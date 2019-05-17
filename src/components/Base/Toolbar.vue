@@ -1,5 +1,5 @@
 <template>
-  <v-app id="sandbox" :dark="dark">
+  <div id="toolbar">
     <v-navigation-drawer
       v-model="primaryDrawer.model"
       :permanent="primaryDrawer.type === 'permanent'"
@@ -18,19 +18,7 @@
       ></v-toolbar-side-icon>
       <v-toolbar-title>Bicheros</v-toolbar-title>
     </v-toolbar>
-    <v-content>
-      <v-container fluid>
-        <v-layout align-center justify-center>
-          <v-flex xs10>
-           Esto es ser troll
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-    <v-footer :inset="footer.inset" app>
-      <span class="px-3">&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
-  </v-app>
+  </div>
 </template>
 
 <script>

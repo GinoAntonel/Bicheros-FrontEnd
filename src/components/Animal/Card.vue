@@ -1,75 +1,60 @@
 <template>
-  <v-hover>
-    <v-card
-      slot-scope="{ hover }"
-      class="mx-auto"
-      color="grey lighten-4"
-      max-width="600"
-    >
-      <v-img
-        :aspect-ratio="16/9"
-        src="https://cdn.vuetifyjs.com/images/cards/kitchen.png"
-      >
-        <v-expand-transition>
-          <div
-            v-if="hover"
-            class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
-            style="height: 100%;"
+  <v-layout row>
+    <div v-for="animal in animals" class="xd">
+      {{animal}}
+      <v-flex xs12 sm6 offset-sm3>
+        <v-card>
+          <v-img
+            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+            height="200px"
           >
-            $14.99
-          </div>
-        </v-expand-transition>
-      </v-img>
-      <v-card-text
-        class="pt-4"
-        style="position: relative;"
-      >
-        <v-btn
-          absolute
-          color="orange"
-          class="white--text"
-          fab
-          large
-          right
-          top
-        >
-          <v-icon>mdi-cart</v-icon>
-        </v-btn>
-        <div class="font-weight-light grey--text title mb-2">{{name}}</div>
-        <h3 class="display-1 font-weight-light orange--text mb-2">QW cooking utensils</h3>
-        <div class="font-weight-light title mb-2">
-          {{name}}
-        </div>
-      </v-card-text>
-    </v-card>
-  </v-hover>
-</template>
+          </v-img>
 
-<style>
-.v-card--reveal {
-  align-items: center;
-  bottom: 0;
-  justify-content: center;
-  opacity: .5;
-  position: absolute;
-  width: 100%;
-}
-</style>
+          <v-card-title primary-title>
+            <div>
+              <div class="headline">{{animal.name}}</div>
+              <v-list-tile>
+                <v-list-tile-content>
+                  <v-list-tile-title>Profile photo</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+
+            </div>
+          </v-card-title>
+          <v-divider light></v-divider>
+          <v-card-actions>
+            <v-btn flat>Share</v-btn>
+            <v-btn flat color="purple">Name</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn icon @click="show = !show">
+              <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+
+          <v-slide-y-transition>
+            <v-card-text v-show="show">
+              I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
+            </v-card-text>
+          </v-slide-y-transition>
+        </v-card>
+      </v-flex>
+    </div>
+  </v-layout>
+</template>
 
 <script>
 import { mapState } from 'vuex'
 
 export default {
-
   computed: mapState({
-    name: state => state.animal.name
+    animals: state => state.animal.animals
   }),
   mounted() {
-    this.getAnimal()
+    this.getAnimals()
   },
   methods: {
-    getAnimal() {
-      this.$store.dispatch('animal/name')
+    getAnimals() {
+      this.$store.dispatch('animal/obtainAnimals')
     }
   }
 }

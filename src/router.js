@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Base from './components/Base'
 import Home from './components/Home'
 import Login from './components/Login/Login'
+import Card from './components/Animal/Card'
+import Footer from './components/Base/Footer'
 
 Vue.use(VueRouter)
 
@@ -13,7 +15,17 @@ const routes = [
     name: 'base',
     meta: {
       title: 'Base'
-    }
+    }, 
+    children: [
+      {
+        path: '',
+        component: Home,
+        name: 'home',
+        meta: {
+          title: 'home'
+        }
+      },
+    ]
   },
   {
     path: '/login',
