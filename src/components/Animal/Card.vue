@@ -5,37 +5,68 @@
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
-            height="200px"
+            src="https://picsum.photos/id/237/200/300"
+            height="300px"
+            contain
           >
           </v-img>
 
-          <v-card-title primary-title>
-            <div>
-              <div class="headline">{{animal.name}}</div>
-              <v-list-tile>
-                <v-list-tile-content>
-                  <v-list-tile-title>Profile photo</v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
+          <v-layout row wrap>
+            <v-flex xs4>
+              <v-card dark>
+                <v-card-text class="px-0">
+                  {{animal.name}}
+                </v-card-text> 
+              </v-card>
+            </v-flex>
+            <v-flex xs4>
+              <v-card dark>
+                <v-card-text class="px-0">
+                  {{animal.race}}
+                </v-card-text> 
+              </v-card>
+            </v-flex>
+            <v-flex xs4>
+              <v-card dark>
+                <v-card-text class="px-0">
+                  {{animal.gender}}
+                </v-card-text> 
+              </v-card>
+            </v-flex>
+          </v-layout>
+          
+          <v-layout row wrap>
+            <v-flex xs4>
+              <v-card dark>
+                <v-card-text class="px-0">
+                  {{animal.date_founded}}
+                </v-card-text> 
+              </v-card>
+            </v-flex>
+            <v-flex xs4>
+              <v-card dark>
+                <v-card-text class="px-0">
+                  {{animal.place_founded}}
+                </v-card-text> 
+              </v-card>
+            </v-flex>
+            <v-flex xs4>
+              <v-card dark>
+                <v-card-text class="px-0">
+                  {{animal.species}}
+                </v-card-text> 
+              </v-card>
+            </v-flex>
+          </v-layout>
 
-            </div>
-          </v-card-title>
-          <v-divider light></v-divider>
           <v-card-actions>
-            <v-btn flat>Share</v-btn>
+            <v-btn @click="deleteAnimal(animal.id_animal)" flat>Delete</v-btn>
             <v-btn flat color="purple">Name</v-btn>
             <v-spacer></v-spacer>
             <v-btn icon @click="show = !show">
               <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
             </v-btn>
           </v-card-actions>
-
-          <v-slide-y-transition>
-            <v-card-text v-show="show">
-              I'm a thing. But, like most politicians, he promised more than he could deliver. You won't have time for sleeping, soldier, not with all the bed making you'll be doing. Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry? I've got to find a way to escape.
-            </v-card-text>
-          </v-slide-y-transition>
         </v-card>
       </v-flex>
     </div>
@@ -55,6 +86,11 @@ export default {
   methods: {
     getAnimals() {
       this.$store.dispatch('animal/obtainAnimals')
+    },
+    deleteAnimal(id) {
+      console.log(id)
+      this.$store.dispatch('animal/deleteAnimal', id) // accion que va a ejecutar el store
+      this.$router.go()
     }
   }
 }
