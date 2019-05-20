@@ -5,7 +5,7 @@
       <v-flex xs12 sm6 offset-sm3>
         <v-card>
           <v-img
-            src="https://picsum.photos/id/237/200/300"
+            :src="`${animal.photo}`"
             height="300px"
             contain
           >
