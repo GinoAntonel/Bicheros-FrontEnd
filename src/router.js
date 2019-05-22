@@ -22,7 +22,7 @@ const routes = [
         component: Home,
         name: 'home',
         meta: {
-          title: 'home'
+          title: 'Bicheros'
         }
       },
     ]

@@ -7,14 +7,15 @@
       :clipped="primaryDrawer.clipped"
       :floating="primaryDrawer.floating"
       :mini-variant="primaryDrawer.mini"
+      :drawerIsOpen = false
+      
       absolute
       overflow
       app
     ></v-navigation-drawer>
     <v-toolbar :clipped-left="primaryDrawer.clipped" app absolute>
       <v-toolbar-side-icon
-        v-if="primaryDrawer.type !== 'permanent'"
-        @click.stop="primaryDrawer.model = !primaryDrawer.model"
+        @click="primaryDrawer.model = !primaryDrawer.model"
       ></v-toolbar-side-icon>
       <v-toolbar-title>Bicheros</v-toolbar-title>
     </v-toolbar>
@@ -27,11 +28,11 @@
       dark: true,
       drawers: ['Default (no property)', 'Permanent', 'Temporary'],
       primaryDrawer: {
-        model: null,
-        type: 'default (no property)',
+        model: false,
+        type: 'Permanent',
         clipped: false,
         floating: true,
-        mini: true
+        mini: true,
       },
       footer: {
         inset: true
