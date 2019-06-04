@@ -94,7 +94,7 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      bottomNav: ['img', 'img', 'img', 'img', 'img', 'img', 'img', 'img', 'img', 'img', 'img']
+      bottomNav: ['img']
     }
   },
   computed: mapState({
@@ -105,14 +105,16 @@ export default {
   },
   methods: {
     getAnimals() {
-      this.$store.dispatch('animal/obtainAnimals')
+      this.$store.dispatch('animal/obtainAnimals').then(res => {
+      this.animals.length
+      })
     },
     deleteAnimal(id) {
       this.$store.dispatch('animal/deleteAnimal', id) // accion que va a ejecutar el store
       this.$router.go()
     },
     getBottomnav(id) {
-      console.log(id)
+      
       return this.bottomNav[id-1]
     }
   }

@@ -17,14 +17,17 @@ const mutations = {
 
 const actions = {
   obtainAnimals({ commit }) {
-    axios
-      .get('/api/animals/')
-      .then(response => {
-        console.log(response.data)
-        commit('setAnimals', response.data)
+    return new Promise((resolve,
+      reject) => {
+        axios
+        .get('/api/animals/')
+        .then(response => {
+          console.log(response.data)
+          commit('setAnimals', response.data)
+          resolve()
+        })
+        .catch(error => { console.log(error) })
       })
-      .catch(error => { console.log(error) })
-    
   },
   deleteAnimal({ commit }, id) {
     axios.delete(`/api/animals/${id}/`)
