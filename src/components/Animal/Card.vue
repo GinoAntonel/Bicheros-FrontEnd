@@ -1,17 +1,17 @@
 <template>
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
-      <v-flex v-for="animal in animals" xs4>
+      <v-flex v-for="(animal, index) in animals" xs4>
         <v-card height="400px">
-          <v-flex v-if="getBottomnav(animal.id_animal) == 'img'">
+          <v-flex v-if="bottomNav[index] == 'img'">
             <v-img :src="`${animal.photo}`" height="400px" contain></v-img>
           </v-flex>
-          <v-flex v-if="getBottomnav(animal.id_animal) == 'delete'">
+          <v-flex v-if="bottomNav[index] == 'delete'">
             <v-container>
               <v-btn @click="deleteAnimal(animal.id_animal)" color="error">Eliminar</v-btn>
             </v-container>
           </v-flex>
-          <v-flex v-else-if="getBottomnav(animal.id_animal)  == 'info'" xs12>
+          <v-flex v-else-if="bottomNav[index]  == 'info'" xs12>
             <v-container>
               <v-layout row wrap>
                 <v-flex xs4>
@@ -94,7 +94,7 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      bottomNav: ['img']
+      bottomNav: []
     }
   },
   computed: mapState({
@@ -106,7 +106,10 @@ export default {
   methods: {
     getAnimals() {
       this.$store.dispatch('animal/obtainAnimals').then(res => {
-      this.animals.length
+      
+      for (let i = 0; i < this.animals.length; i++){
+        this.bottomNav.push('img')
+      }
       })
     },
     deleteAnimal(id) {
