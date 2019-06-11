@@ -31,7 +31,22 @@ const actions = {
   },
   deleteAnimal({ commit }, id) {
     axios.delete(`/api/animals/${id}/`)
-  }
+  },
+  createAnimal({ commit }, animal) {
+    console.log('sfsfsfsf')
+    console.log(animal.race)
+    axios
+      .post('/api/animals/', {
+        name: animal.name,
+        race: animal.race,
+        date_founded: animal.date_founded,
+        place_founded: animal.place_founded,
+        species: animal.species
+      })
+      .catch(  (error) => {
+        const response = error.response
+      })
+  },
 }
 
 export default {

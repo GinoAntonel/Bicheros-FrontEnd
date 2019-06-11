@@ -11,27 +11,6 @@
     absolute
     overflow
     app>
-
-    <v-list dense>
-      <v-list-tile @click="">
-        <v-list-tile-action>
-          <v-icon>add</v-icon>
-        </v-list-tile-action>
-      </v-list-tile>
-      <v-list-tile @click="">
-        <v-list-tile-action>
-          <v-tooltip right v-model="show" top>
-          <template v-slot:activator="{ on }">
-            <v-btn icon v-on="on">
-              <v-icon color="grey lighten-1">shopping_cart</v-icon>
-            </v-btn>
-          </template>
-          <span>Programmatic tooltip</span>
-        </v-tooltip>
-        </v-list-tile-action>
-      </v-list-tile>
-    </v-list>
-
     </v-navigation-drawer>
     <v-toolbar :clipped-left="primaryDrawer.clipped" app absolute>
       <v-toolbar-side-icon
@@ -53,10 +32,11 @@
         clipped: false,
         floating: true,
         mini: true,
+        dialog: false
       },
       footer: {
         inset: true
       }
-    })
+    }),
   }
 </script>
