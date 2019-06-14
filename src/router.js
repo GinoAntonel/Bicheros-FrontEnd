@@ -4,9 +4,6 @@ import Base from './components/Base'
 import Home from './components/Home'
 import Login from './components/Login/Login'
 import Error from './components/Error/Error'
-import FormAgregar from './components/Animal/FormAgregar'
-import Card from './components/Animal/Card'
-import Footer from './components/Base/Footer'
 
 Vue.use(VueRouter)
 

@@ -62,9 +62,23 @@
                     {{animal.place_founded}}
                   </v-card-text>
                 </v-flex>
-
               <v-divider inset></v-divider>
               </v-layout>
+
+              <v-divider inset></v-divider>
+
+              <v-layout row>
+                <v-flex xs4>
+                  <v-subheader>Genero:</v-subheader>
+                </v-flex>
+                <v-flex xs8>
+                  <v-card-text>
+                    {{animal.gender}}
+                  </v-card-text>
+                </v-flex>
+              <v-divider inset></v-divider>
+              </v-layout>
+
             </v-container>
           </v-flex>
           <v-bottom-nav :active.sync="bottomNav[index]" :value="true"  absolute dark shift>

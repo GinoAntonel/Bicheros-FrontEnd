@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 
 axios.defaults.baseURL = 'http://localhost:8080';
 
@@ -33,19 +34,27 @@ const actions = {
     axios.delete(`/api/animals/${id}/`)
   },
   createAnimal({ commit }, animal) {
-    console.log('sfsfsfsf')
-    console.log(animal.race)
-    axios
-      .post('/api/animals/', {
-        name: animal.name,
-        race: animal.race,
-        date_founded: animal.date_founded,
-        place_founded: animal.place_founded,
-        species: animal.species
-      })
-      .catch(  (error) => {
-        const response = error.response
-      })
+    console.log(animal.imageFile)
+    let formData = new FormData()
+    formData.append('name', animal.name)
+    formData.append('race', animal.race)
+    formData.append('date_founded', animal.date_founded)
+    formData.append('place_founded', animal.place_founded)
+    formData.append('species', animal.species)
+    if (animal.gender === 'Masculino'){
+      formData.append('gender', 0)
+    }
+    else {
+      formData.append('gender', 1)
+    }
+    formData.append('photo', animal.imageFile)
+    axios({
+      method: 'post',
+      url: '/api/animals/',
+      header: { 'Content-Type' : 'multipart/form-data' },
+      data: formData,
+    })
+    .catch(err => console.log(err.response.data))
   },
 }
 

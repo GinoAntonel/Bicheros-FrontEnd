@@ -26,21 +26,52 @@
                   <v-text-field v-model="animal.place_founded" label="Lugar Encontrado" required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field v-model="animal.date_founded" label="Date Encontrado" required></v-text-field>
+                  <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :nudge-right="40"
+                    lazy
+                    transition="scale-transition"
+                    offset-y
+                    full-width
+                    min-width="290px"
+                  >
+                    <template v-slot:activator="{ on }">
+                      <v-text-field
+                        v-model="animal.date_founded"
+                        label="Fecha de Encuentro"
+                        readonly
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      ref="picker"
+                      v-model="animal.date_founded"
+                      :max="new Date().toISOString().substr(0, 10)"
+                      min="1950-01-01"
+                      @change="save"
+                    ></v-date-picker>
+                  </v-menu>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-select
                     :items="['Masculino', 'Femenino']"
                     label="Genero"
                     required
+                    v-model="animal.gender"
                   ></v-select>
                 </v-flex>
-                <v-flex xs12 sm6>
-                  <v-autocomplete
-                    :items="['Skiing', 'Ice hockey', 'Soccer', 'Basketball', 'Hockey', 'Reading', 'Writing', 'Coding', 'Basejump']"
-                    label="Interests"
-                    multiple
-                  ></v-autocomplete>
+                <v-flex xs12 sm6 class="text-xs-center text-sm-center text-md-center text-lg-center">
+                  <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
+                  <input
+                    type="file"
+                    style="display: none"
+                    ref="image"
+                    accept="image/*"
+                    @change="onFilePicked"
+                  >
+                  <img :src="animal.imageUrl" height="150" v-if="animal.imageUrl"/>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -67,8 +98,12 @@
         race: '',
         date_founded: '',
         place_founded: '',
-        species: ''
-      }
+        species: '',
+        gender: '',
+        imageFile: '',
+        imageUrl: '',
+      },
+      imageName: '',
     }),
     watch: {
       menu (val) {
@@ -81,7 +116,29 @@
       },
       addAnimal(animal){
         this.$store.dispatch('animal/createAnimal', this.animal)
-    }
+      },
+      pickFile () {
+          this.$refs.image.click ()
+      },
+      onFilePicked (e) {
+        const files = e.target.files
+        if(files[0] !== undefined) {
+          this.imageName = files[0].name
+          if(this.imageName.lastIndexOf('.') <= 0) {
+            return
+          }
+          const fr = new FileReader ()
+          fr.readAsDataURL(files[0])
+          fr.addEventListener('load', () => {
+            this.animal.imageUrl = fr.result
+            this.animal.imageFile = files[0] // this is an image file that can be sent to server...
+          })
+        } else {
+          this.imageName = ''
+          this.animal.imageFile = ''
+          this.animal.imageUrl = ''
+        }
+      }
     }
   }
 </script>
