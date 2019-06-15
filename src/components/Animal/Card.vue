@@ -9,77 +9,40 @@
           <v-flex v-if="bottomNav[index] == 'delete'">
             <v-container>
               <v-btn @click="deleteAnimal(animal.id_animal)" color="error">Eliminar</v-btn>
-              <v-btn  color="primary" v-on="on">Agregar</v-btn>
+              <v-btn  color="primary" v-on="on">Editar</v-btn>
             </v-container>
           </v-flex>
           <v-flex v-else-if="bottomNav[index]  == 'info'" xs12>
-            <v-container>
-              <v-layout row wrap>
-                <v-flex xs4>
-                  <v-subheader>Nombre:</v-subheader>
-                </v-flex>
-                <v-flex xs8>
-                  <v-card-text>
-                    {{animal.name}}
-                  </v-card-text>
-                </v-flex>
-              </v-layout>
-
-              <v-divider inset></v-divider>
-
-              <v-layout row>
-                <v-flex xs4>
-                  <v-subheader> Raza:</v-subheader>
-                </v-flex>
-                <v-flex xs8>
-                  <v-card-text>
-                    {{animal.race}}
-                  </v-card-text>
-                </v-flex>
-              </v-layout>
-
-              <v-divider inset></v-divider>
-
-              <v-layout row>
-                <v-flex xs4>
-                  <v-subheader>Fecha encontrado:</v-subheader>
-                </v-flex>
-                <v-flex xs8>
-                  <v-card-text>
-                    {{animal.date_founded}}
-                  </v-card-text>
-                </v-flex>
-              </v-layout>
-
-              <v-divider inset></v-divider>
-
-              <v-layout row>
-                <v-flex xs4>
-                  <v-subheader>Lugar encontrado:</v-subheader>
-                </v-flex>
-                <v-flex xs8>
-                  <v-card-text>
-                    {{animal.place_founded}}
-                  </v-card-text>
-                </v-flex>
-              <v-divider inset></v-divider>
-              </v-layout>
-
-              <v-divider inset></v-divider>
-
-              <v-layout row>
-                <v-flex xs4>
-                  <v-subheader>Genero:</v-subheader>
-                </v-flex>
-                <v-flex xs8>
-                  <v-card-text>
-                    {{animal.gender}}
-                  </v-card-text>
-                </v-flex>
-              <v-divider inset></v-divider>
-              </v-layout>
-
-            </v-container>
+          <v-container fluid grid-list-md>
+            <v-flex xs12>
+              <v-card>
+                <v-card-title><h4>{{ animal.name }}</h4></v-card-title>
+                <v-divider></v-divider>
+                <v-list dense>
+                  <v-list-tile>
+                    <v-list-tile-content>Raza:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.race }}</v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-content>Fecha Encontrado:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.date_founded }}</v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-content>Lugar Encontrado:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.place_founded }}</v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-content>Especie:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.species }}</v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-content>Genero:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.gender }}</v-list-tile-content>
+                  </v-list-tile>
+                </v-list>
+              </v-card>
+            </v-flex>
+          </v-container>
           </v-flex>
           <v-bottom-nav :active.sync="bottomNav[index]" :value="true"  absolute dark shift>
             <v-btn dark id="btn" value="img">
