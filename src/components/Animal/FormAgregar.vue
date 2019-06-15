@@ -1,5 +1,13 @@
 <template>
   <v-layout row justify-center>
+    <v-dialog v-model="dialog" persistent max-width="600px">
+      <template v-slot:activator="{ on }">
+        <button color="primary" v-on="on" type="button" class="v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark red" style="" data-v-10ea4164="">
+          <div class="v-btn__content">
+            <i aria-hidden="true" class="v-icon material-icons theme--dark">add</i>
+          </div>
+        </button>
+      </template>
       <v-card>
         <v-card-title>
           <span class="headline">Agregar Animal</span>
@@ -84,6 +92,7 @@
           <v-btn color="blue darken-1" flat @click="addAnimal()">Guardar</v-btn>
         </v-card-actions>
       </v-card>
+    </v-dialog>
   </v-layout>
 </template>
 

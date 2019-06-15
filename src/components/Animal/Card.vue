@@ -9,7 +9,7 @@
           <v-flex v-if="bottomNav[index] == 'delete'">
             <v-container>
               <v-btn @click="deleteAnimal(animal.id_animal)" color="error">Eliminar</v-btn>
-              <v-btn  color="primary" v-on="on">Editar</v-btn>
+              <FormModificar/>
             </v-container>
           </v-flex>
           <v-flex v-else-if="bottomNav[index]  == 'info'" xs12>
@@ -62,25 +62,17 @@
           </v-bottom-nav> 
         </v-card>
       </v-flex>
-    </v-layout>
-    <v-flex>
-      <v-dialog v-model="dialog" persistent max-width="600px">
-        <template v-slot:activator="{ on }">
-          <button color="primary" v-on="on" type="button" class="v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark red" style="" data-v-10ea4164="">
-            <div class="v-btn__content">
-              <i aria-hidden="true" class="v-icon material-icons theme--dark">add</i>
-            </div>
-          </button>
-        </template>
+      <v-flex>
         <FormAgregar/>
-      </v-dialog>
-    </v-flex>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import FormAgregar from './FormAgregar'
+import FormModificar from './FormModificar'
 
 export default {
   data () {
@@ -90,7 +82,8 @@ export default {
     }
   },
   components: {
-    FormAgregar
+    FormAgregar,
+    FormModificar
   },
   computed: mapState({
     animals: state => state.animal.animals,
