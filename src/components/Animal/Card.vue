@@ -9,7 +9,7 @@
           <v-flex v-if="bottomNav[index] == 'delete'">
             <v-container>
               <v-btn @click="deleteAnimal(animal.id_animal)" color="error">Eliminar</v-btn>
-              <FormModificar/>
+              <FormModificar :animales="animal"/>
             </v-container>
           </v-flex>
           <v-flex v-else-if="bottomNav[index]  == 'info'" xs12>
@@ -71,8 +71,11 @@
 
 <script>
 import { mapState } from 'vuex'
+import Vue from 'vue'
 import FormAgregar from './FormAgregar'
 import FormModificar from './FormModificar'
+
+Vue.component('FormModificar', FormModificar)
 
 export default {
   data () {
