@@ -125,6 +125,7 @@
       },
       addAnimal(animal){
         this.$store.dispatch('animal/createAnimal', this.animal)
+        this.$router.go()
       },
       pickFile () {
           this.$refs.image.click ()

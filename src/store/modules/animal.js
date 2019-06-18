@@ -41,12 +41,12 @@ const actions = {
     formData.append('date_founded', animal.date_founded)
     formData.append('place_founded', animal.place_founded)
     formData.append('species', animal.species)
-    if (animal.gender === 'Masculino'){
-      formData.append('gender', 0)
-    }
-    else {
-      formData.append('gender', 1)
-    }
+      if (animal.gender === 'Masculino'){
+        formData.append('gender', 0)
+      }
+      else {
+        formData.append('gender', 1)
+      }
     formData.append('photo', animal.imageFile)
     axios({
       method: 'post',
@@ -59,16 +59,21 @@ const actions = {
   modifyAnimals({ commit }, animales){
     return new Promise((resolve,
       reject) => {
-        console.log(animales.id_animal)
+        let formData = new FormData()
+        formData.append('id_animal', animales.id_animal)
+        formData.append('name', animales.name)
+        formData.append('race', animales.race)
+        formData.append('place_founded', animales.place_founded)
+        formData.append('date_founded', animales.date_founded)
+        formData.append('species', animales.species)
         axios({
           method: 'put',
           url: `/api/animals/${animales.id_animal}/`,
           header: { 'Content-Type' : 'multipart/form-data' },
-          data: {
-            'name': animales.name
-          }
+          data: formData,
         })
         .then(response => {
+          console.log(response.data)
           resolve()
         })
         .catch(err => console.log(err.response.data))
