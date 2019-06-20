@@ -89,8 +89,16 @@
               <label>Foto:</label>
             </v-flex>
 
-            <v-flex xs12 sm6  md6 class="text-xs-center text-sm-center text-md-center text-lg-center">
-              <input type="file">
+            <v-flex xs12 sm6 class="text-xs-center text-sm-center text-md-center text-lg-center">
+              <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
+              <input
+                type="file"
+                style="display: none"
+                ref="image"
+                accept="image/*"
+                @change="onFilePicked"
+              >
+              <img :src="animales.imageUrl" height="150" v-if="animales.imageUrl"/>
             </v-flex>
           </v-layout>
         </v-container>
@@ -113,12 +121,37 @@
         notifications: false,
         sound: true,
         widgets: false,
+        imageFile: '',
+        imageUrl: '',
+        imageName: '',
       }
     },
     methods: {
       modifyAnimals(animales) {
         this.$store.dispatch('animal/modifyAnimals', this.animales)
-        this.$router.go()
+        // this.$router.go()
+      },
+      pickFile () {
+        this.$refs.image.click () 
+      },
+      onFilePicked (e) {
+        const files = e.target.files
+        if(files[0] !== undefined) {
+          this.imageName = files[0].name
+          if(this.imageName.lastIndexOf('.') <= 0) {
+            return
+          }
+          const fr = new FileReader ()
+          fr.readAsDataURL(files[0])
+          fr.addEventListener('load', () => {
+            this.animales.imageUrl = fr.result
+            this.animales.imageFile = files[0] // this is an image file that can be sent to server...
+          })
+        } else {
+          this.imageName = ''
+          this.animales.imageFile = ''
+          this.animales.imageUrl = ''
+        }
       },
     }
   }
