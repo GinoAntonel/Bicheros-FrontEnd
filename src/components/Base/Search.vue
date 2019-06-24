@@ -1,8 +1,8 @@
 <template>
-    <div id="search">
+    <div id="animalSearch">
       <v-form @submit.prevent='search'>
         <v-text-field
-          v-model="wordSearch"
+          v-model="animalSearch.wordSearch"
           class="mx-3"
           label="Search"
           prepend-inner-icon="search"
@@ -19,13 +19,18 @@
     name: 'Search',
     data() {
       return {
+        animalSearch: {
         wordSearch: '',
+        }
       }
     },
     methods: {
-      search(wordSearch, returnValue) {
-        console.log(wordSearch)
-        console.log(returnValue)
+      search(animalSearch) {
+        console.log(this.animalSearch.wordSearch)
+        this.$store.dispatch('animal/searchAnimals', this.animalSearch)
+        .then(() => {
+          this.$router.push({ name: 'search' })
+        })
       }
     }
   }

@@ -4,6 +4,7 @@ import Base from './components/Base'
 import Home from './components/Home'
 import Login from './components/Login/Login'
 import Error from './components/Error/Error'
+import SearchAnimal from  './components/Search/SearchAnimal'
 
 Vue.use(VueRouter)
 
@@ -32,6 +33,14 @@ const routes = [
           title: 'Error'
         }
       },
+      {
+        path: '/search',
+        component: SearchAnimal,
+        name: 'search',
+        meta: {
+          title: 'Search'
+        }
+      }
     ]
   },
   {

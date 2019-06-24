@@ -8,12 +8,16 @@ const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975H
 
 const state =  {
   animals: null,
+  animalsSearch: null
 }
 
 const mutations = {
   setAnimals(state, animals) {
     state.animals = animals
   },
+  setSearch(state, animals) {
+    state.animalsSearch = animals
+  }
 }
 
 const actions = {
@@ -77,6 +81,21 @@ const actions = {
         .then(response => {
           console.log(response.data)
           resolve()
+        })
+        .catch(err => console.log(err.response.data))
+      })
+  },
+  searchAnimals({ commit }, animalSearch){
+    return new Promise ((resolve,
+      reject) => {
+        axios({
+          method: 'get',
+          url: `/api/animals/?search=${animalSearch}`,
+          header: { 'Content-Type' : 'multipart/form-data' },
+        })
+        .then(response => {          
+          context.commit('setSearch', response.data)
+          // this.$router.push({ name: 'search' })
         })
         .catch(err => console.log(err.response.data))
       })
