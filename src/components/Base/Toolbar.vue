@@ -17,11 +17,14 @@
         @click="primaryDrawer.model = !primaryDrawer.model"
       ></v-toolbar-side-icon>
       <v-toolbar-title>Bicheros</v-toolbar-title>
+      <v-spacer/>
+      <Search/>
     </v-toolbar>
   </div>
 </template>
 
 <script>
+import Search from './Search'
   export default {
     data: () => ({
       dark: true,
@@ -36,7 +39,10 @@
       },
       footer: {
         inset: true
-      }
+      },
     }),
+    components: {
+      Search
+    }
   }
 </script>

@@ -9,14 +9,18 @@
           <v-flex v-if="bottomNav[index] == 'delete'">
             <v-container>
               <v-btn @click="deleteAnimal(animal.id_animal)" color="error">Eliminar</v-btn>
-              <FormModificar :animales="animal"/>
             </v-container>
           </v-flex>
           <v-flex v-else-if="bottomNav[index]  == 'info'" xs12>
           <v-container fluid grid-list-md>
             <v-flex xs12>
               <v-card>
-                <v-card-title><h4>{{ animal.name }}</h4></v-card-title>
+                <v-card-title>
+                  <v-list-tile>
+                    <v-list-tile-content><h4>{{ animal.name }}</h4></v-list-tile-content>           
+                    <v-list-tile-content class="align-end"><FormModificar :animales="animal"/> </v-list-tile-content>
+                  </v-list-tile>               
+                </v-card-title>
                 <v-divider></v-divider>
                 <v-list dense>
                   <v-list-tile>
@@ -86,7 +90,7 @@ export default {
   },
   components: {
     FormAgregar,
-    FormModificar
+    FormModificar,
   },
   computed: mapState({
     animals: state => state.animal.animals,

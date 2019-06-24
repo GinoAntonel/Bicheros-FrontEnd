@@ -2,7 +2,7 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
-        <button color="primary" v-on="on" type="button" class="v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark red" style="" data-v-10ea4164="">
+        <button v-on="on" type="button" class="v-btn v-btn--bottom v-btn--floating v-btn--fixed v-btn--right theme--dark green darken-1" style="" data-v-10ea4164="">
           <div class="v-btn__content">
             <i aria-hidden="true" class="v-icon material-icons theme--dark">add</i>
           </div>
@@ -120,9 +120,6 @@
       }
     },
     methods: {
-      save (date) {
-        this.$refs.menu.save(date)
-      },
       addAnimal(animal){
         this.$store.dispatch('animal/createAnimal', this.animal)
         this.$router.go()

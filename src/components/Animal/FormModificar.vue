@@ -1,11 +1,13 @@
 <template>
   <v-layout row justify-center>
-    <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+    <v-dialog v-model="dialog" persistent max-width="750px" transition="dialog-bottom-transition">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Modificar</v-btn>
+        <v-icon class="mr-2" color="#BDBDBD" v-on="on" @click="">
+          edit
+        </v-icon>
       </template>
       <v-card>
-        <v-toolbar dark color="primary">
+        <v-toolbar dark>
           <v-btn icon dark @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
@@ -39,17 +41,6 @@
               outline
               v-model="animales.race"
               ></v-text-field>
-
-            </v-flex>
-            <v-flex xs12 sm6 md6>
-              <label>Fecha Encontrado:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="animales.date_founded"
-              ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
@@ -61,6 +52,41 @@
               outline
               v-model="animales.place_founded"
               ></v-text-field>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <label>Fecha Encontrado:</label>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <v-menu
+                ref="menu"
+                v-model="menu"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="animales.date_founded"
+                    label="Fecha de Encuentro"
+                    readonly
+                    v-on="on"
+                    outline
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  ref="picker"
+                  v-model="animales.date_founded"
+                  :max="new Date().toISOString().substr(0, 10)"
+                  min="1950-01-01"
+                  @change="save"
+                ></v-date-picker>
+              </v-menu>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
@@ -124,12 +150,22 @@
         imageFile: '',
         imageUrl: '',
         imageName: '',
+        date: null,
+        menu: false,
+      }
+    },
+    watch: {
+      menu (val) {
+        val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
     methods: {
       modifyAnimals(animales) {
         this.$store.dispatch('animal/modifyAnimals', this.animales)
-        // this.$router.go()
+        this.$router.go()
+      },
+      save (date) {
+        this.$refs.menu.save(date)
       },
       pickFile () {
         this.$refs.image.click () 
