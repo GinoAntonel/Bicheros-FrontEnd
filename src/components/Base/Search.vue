@@ -2,7 +2,7 @@
     <div id="animalSearch">
       <v-form @submit.prevent='search'>
         <v-text-field
-          v-model="animalSearch.wordSearch"
+          v-model="wordSearch"
           class="mx-3"
           label="Search"
           prepend-inner-icon="search"
@@ -16,21 +16,20 @@
 
 <script>
   export default {
-    name: 'Search',
+    name: 'SearchA',
     data() {
       return {
-        animalSearch: {
         wordSearch: '',
-        }
       }
     },
     methods: {
       search(animalSearch) {
-        console.log(this.animalSearch.wordSearch)
-        this.$store.dispatch('animal/searchAnimals', this.animalSearch)
-        .then(() => {
-          this.$router.push({ name: 'search' })
-        })
+        console.log(this.wordSearch)
+        this.$store
+          .dispatch('animal/searchAnimals', this.wordSearch)
+          .then(() => {
+            this.$router.push({ name: 'search' })
+          })
       }
     }
   }

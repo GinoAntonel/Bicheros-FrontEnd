@@ -85,17 +85,18 @@ const actions = {
         .catch(err => console.log(err.response.data))
       })
   },
-  searchAnimals({ commit }, animalSearch){
+  searchAnimals( context , wordSearch){
     return new Promise ((resolve,
       reject) => {
+        console.log('Esto anda', wordSearch)
         axios({
           method: 'get',
-          url: `/api/animals/?search=${animalSearch}`,
-          header: { 'Content-Type' : 'multipart/form-data' },
+          url: `/api/animals/?search=${wordSearch}`,
         })
-        .then(response => {          
+        .then(response => {
           context.commit('setSearch', response.data)
-          // this.$router.push({ name: 'search' })
+          console.log(response.data)
+          resolve()
         })
         .catch(err => console.log(err.response.data))
       })
