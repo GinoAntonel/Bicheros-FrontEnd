@@ -1,28 +1,26 @@
 <template>
   <div id="search">
-    <v-layout row wrap style="margin-top: 40px; margin-bottom: 40px">
-        <!-- <v-flex xs1></v-flex> -->
-      <div v-for="animal in animalsSearch"
-      :key="animal.id_animal">
-        <AnimalSearch
-        :key="animal.id_animal"
-        :id="animal.id_animal"
-        :name="animal.name"/>
-      </div>
-      <h1>x</h1>
-      </v-layout>
+    <div v-for="animal in animalsSearch"
+    :key="animal.id_animal">
+      <NewAnimal :animalSearch="animal"/>
+    </div>
   </div>
 </template>
 
 <script>
   import { mapState } from 'vuex'
-  import AnimalSearch from './AnimalSearch'
+  import NewAnimal from './NewAnimal'
+  import Vue from 'vue'
   
+  Vue.component('NewAnimal', NewAnimal)
+
   export default {
     name: 'Search',
     components: {
-      AnimalSearch
+      NewAnimal
     },
-  computed: mapState(['animalsSearch']),
+  computed: mapState({
+    animalsSearch: state => state.animal.animalsSearch,
+  }),
   }
 </script>

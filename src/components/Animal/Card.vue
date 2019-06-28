@@ -66,9 +66,6 @@
           </v-bottom-nav> 
         </v-card>
       </v-flex>
-      <v-flex>
-        <FormAgregar/>
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -76,7 +73,6 @@
 <script>
 import { mapState } from 'vuex'
 import Vue from 'vue'
-import FormAgregar from './FormAgregar'
 import FormModificar from './FormModificar'
 
 Vue.component('FormModificar', FormModificar)
@@ -89,7 +85,6 @@ export default {
     }
   },
   components: {
-    FormAgregar,
     FormModificar,
   },
   computed: mapState({
