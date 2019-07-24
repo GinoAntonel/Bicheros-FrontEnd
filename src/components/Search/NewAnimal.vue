@@ -90,7 +90,7 @@ export default {
   },
   props: {
     animalSearch: {
-      type: Number
+      type: Array
     }
   },
   components: {

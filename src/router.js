@@ -33,15 +33,15 @@ const routes = [
           title: 'Error'
         }
       },
-      {
-        path: '/search',
-        component: SearchAnimal,
-        name: 'search',
-        meta: {
-          title: 'Search'
-        }
-      }
     ]
+  },
+  {
+    path: '/search',
+    component: SearchAnimal,
+    name: 'search',
+    meta: {
+      title: 'Search'
+    }
   },
   {
     path: '/login',
