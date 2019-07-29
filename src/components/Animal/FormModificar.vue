@@ -112,11 +112,11 @@
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Foto:</label>
+              <img :src="animales.photo" height="150"/>
             </v-flex>
 
             <v-flex xs12 sm6 class="text-xs-center text-sm-center text-md-center text-lg-center">
-              <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
+              <v-text-field v-model="imageName" @click='pickFile' prepend-icon='attach_file' ></v-text-field>
               <input
                 type="file"
                 style="display: none"
@@ -139,7 +139,7 @@
     props: {
       animales: {
         type: Number
-      }
+      },
     },
     data () {
       return {
@@ -149,7 +149,7 @@
         widgets: false,
         imageFile: '',
         imageUrl: '',
-        imageName: '',
+        imageName: this.animales.photo,
         date: null,
         menu: false,
       }
@@ -162,6 +162,7 @@
     methods: {
       modifyAnimals(animales) {
         this.$store.dispatch('animal/modifyAnimals', this.animales)
+        this.$router.push({ path: '/' })
         this.$router.go()
       },
       save (date) {
@@ -172,6 +173,8 @@
       },
       onFilePicked (e) {
         const files = e.target.files
+        console.log(files)
+        console.log(this.animales.photo)
         if(files[0] !== undefined) {
           this.imageName = files[0].name
           if(this.imageName.lastIndexOf('.') <= 0) {

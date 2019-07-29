@@ -145,7 +145,10 @@
           this.animal.imageFile = ''
           this.animal.imageUrl = ''
         }
-      }
+      },
+      save (date) {
+        this.$refs.menu.save(date)
+      },
     }
   }
 </script>

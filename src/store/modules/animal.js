@@ -63,7 +63,6 @@ const actions = {
   modifyAnimals({ commit }, animales){
     return new Promise((resolve,
       reject) => {
-        console.log(animales.imageFile)
         let formData = new FormData()
         formData.append('id_animal', animales.id_animal)
         formData.append('name', animales.name)
@@ -71,7 +70,9 @@ const actions = {
         formData.append('place_founded', animales.place_founded)
         formData.append('date_founded', animales.date_founded)
         formData.append('species', animales.species)
-        formData.append('photo', animales.imageFile)
+        if(animales.imageFile != null){
+          formData.append('photo', animales.imageFile)
+        }
         axios({
           method: 'put',
           url: `/api/animals/${animales.id_animal}/`,

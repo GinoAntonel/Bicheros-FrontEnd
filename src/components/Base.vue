@@ -20,7 +20,8 @@
       Toolbar,
       Footer,
       Card
-    }
+    },
   }
+  
 </script>
 
