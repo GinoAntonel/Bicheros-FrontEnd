@@ -5,6 +5,7 @@ import Home from './components/Home'
 import Login from './components/Login/Login'
 import Error from './components/Error/Error'
 import SearchAnimal from  './components/Search/SearchAnimal'
+import Monto from './components/Monto/Monto'
 
 Vue.use(VueRouter)
 
@@ -34,6 +35,14 @@ const routes = [
         }
       },
     ]
+  },
+  {
+    path: '/monto',
+    component: Monto,
+    name: 'monto',
+    meta: {
+      title: 'Monto'
+    }
   },
   {
     path: '/search',
