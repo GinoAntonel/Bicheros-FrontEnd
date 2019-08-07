@@ -19,7 +19,7 @@
             </v-card-text>
             <v-divider></v-divider>
             <v-card-actions class="justify-space-between">
-              <v-btn text>Modify</v-btn>
+              <FormModificarMonto :montos="monto"/>
               <v-btn color="primary" text @click="deleteMonto(monto.id)">
                 Delete
               </v-btn>
@@ -40,6 +40,9 @@
   import Footer from '../Base/Footer'
   import Vue from 'vue'
   import FormAgregarMonto from './FormAgregarMonto'
+  import FormModificarMonto from './FormModificarMonto'
+
+  Vue.component('FormModificarMonto', FormModificarMonto)
 
   export default {
     data() {
@@ -60,7 +63,8 @@
     components: {
       Toolbar,
       Footer,
-      FormAgregarMonto
+      FormAgregarMonto,
+      FormModificarMonto
     },
     methods: {
       getAmount(){

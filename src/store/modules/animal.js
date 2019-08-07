@@ -1,14 +1,16 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://192.168.100.231:8080';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
 
 const state =  {
   animals: null,
-  animalsSearch: null
+  animalsSearch: null,
+  token: localStorage.getItem('access_token') || null,
+  user: localStorage.getItem('user') || null,
 }
 
 const mutations = {
@@ -17,15 +19,42 @@ const mutations = {
   },
   setSearch(state, animals) {
     state.animalsSearch = animals
+  },
+  setToken(state, token) {
+    state.token = token
+  },
+  setUser(state, user) {
+    state.user = user
   }
 }
 
 const actions = {
-  obtainAnimals({ commit }) {
+  obtainToken({ commit }, user) {
+    return new Promise((resolve, reject) => {
+      let formData = new FormData()
+      formData.append('username', user.username)
+      formData.append('password', user.password)
+      axios({
+        method: 'post',
+        url: '/auth/login/',
+        header: { 'Content-Type' : 'multipart/form-data' },
+        data: formData,
+      })
+      .then(response => {
+        const token = response.data.key
+        localStorage.setItem('access_token', token)
+        commit('setToken', token)
+        console.log(token)
+        resolve()
+      })
+    })
+  },
+  obtainAnimals({ commit }, token) {
+    console.log(token)
     return new Promise((resolve,
       reject) => {
         axios
-        .get('/api/animals/')
+        .get('/api/animals/', {headers: { 'Authorization' : 'Token ' + token}})
         .then(response => {
           console.log(response.data)
           commit('setAnimals', response.data)
@@ -101,7 +130,7 @@ const actions = {
         .catch(err => console.log(err.response.data))
       })
   }
-}
+} 
 
 export default {
   namespaced: true,

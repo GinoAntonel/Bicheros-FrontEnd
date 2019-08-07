@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:8000';
+axios.defaults.baseURL = 'http://192.168.100.231:8080';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -87,6 +87,32 @@ const actions = {
       data: formData,
     })
     .catch(err => console.log(err.response.data))
+  },
+  modifyMonto({ commit }, montos){
+    return new Promise((resolve,
+      reject) => {
+        let formData = new FormData()
+        formData.append('id', montos.id)
+        formData.append('amount', montos.amount)
+        formData.append('date', montos.date)
+        if (montos.tipo == 'Ingreso'){
+          formData.append('tipo', 0)
+        }
+        else{
+          formData.append('tipo', 1)
+        }
+        axios({
+          method: 'put',
+          url: `/api/monto/${montos.id}/`,
+          header: { 'Content-Type' : 'multipart/form-data' },
+          data: formData,
+        })
+        .then(response => {
+          console.log(response.data)
+          resolve()
+        })
+        .catch(err => console.log(err.response.data))
+      })
   },
 }
 

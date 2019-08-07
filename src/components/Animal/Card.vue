@@ -89,13 +89,14 @@ export default {
   },
   computed: mapState({
     animals: state => state.animal.animals,
+    token: state => state.animal.token
   }),
   mounted() {
     this.getAnimals()
   },
   methods: {
-    getAnimals() {
-      this.$store.dispatch('animal/obtainAnimals').then(res => {
+    getAnimals(toke) {
+      this.$store.dispatch('animal/obtainAnimals', this.token).then(res => {
       
       for (let i = 0; i < this.animals.length; i++){
         this.bottomNav.push('img')
