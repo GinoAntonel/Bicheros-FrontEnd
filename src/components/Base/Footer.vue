@@ -1,5 +1,5 @@
 <template>
-  <v-app id="footer" :dark="dark">
+  <v-app id="footer" dark>
     <v-footer :inset="footer.inset" app>
       <span class="px-3">&copy; {{ new Date().getFullYear() }}</span>
       <v-flex>

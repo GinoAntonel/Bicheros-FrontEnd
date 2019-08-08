@@ -68,6 +68,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     data: () => ({
       dialog: false,
@@ -79,14 +80,19 @@
         date: ''
       }
     }),
+    computed: mapState({
+      token: state => state.user.token
+    }),
     watch: {
       menu (val) {
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
     methods: {
-      addAmount(monto){
-        this.$store.dispatch('monto/createMonto', this.monto)
+      addAmount(){
+        let monto = this.monto
+        let token = this.token
+        this.$store.dispatch('monto/createMonto', {monto, token})
         this.$router.go()
       },
       save (date) {

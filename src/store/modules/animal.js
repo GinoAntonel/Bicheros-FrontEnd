@@ -9,8 +9,6 @@ const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975H
 const state =  {
   animals: null,
   animalsSearch: null,
-  token: localStorage.getItem('access_token') || null,
-  user: localStorage.getItem('user') || null,
 }
 
 const mutations = {
@@ -20,41 +18,15 @@ const mutations = {
   setSearch(state, animals) {
     state.animalsSearch = animals
   },
-  setToken(state, token) {
-    state.token = token
-  },
-  setUser(state, user) {
-    state.user = user
-  }
 }
 
 const actions = {
-  obtainToken({ commit }, user) {
-    return new Promise((resolve, reject) => {
-      let formData = new FormData()
-      formData.append('username', user.username)
-      formData.append('password', user.password)
-      axios({
-        method: 'post',
-        url: '/auth/login/',
-        header: { 'Content-Type' : 'multipart/form-data' },
-        data: formData,
-      })
-      .then(response => {
-        const token = response.data.key
-        localStorage.setItem('access_token', token)
-        commit('setToken', token)
-        console.log(token)
-        resolve()
-      })
-    })
-  },
   obtainAnimals({ commit }, token) {
     console.log(token)
     return new Promise((resolve,
       reject) => {
         axios
-        .get('/api/animals/', {headers: { 'Authorization' : 'Token ' + token}})
+        .get('/api/animals/', {headers: { 'Authorization' : 'Token ' + token }})
         .then(response => {
           console.log(response.data)
           commit('setAnimals', response.data)
@@ -63,10 +35,20 @@ const actions = {
         .catch(error => { console.log(error) })
       })
   },
-  deleteAnimal({ commit }, id) {
-    axios.delete(`/api/animals/${id}/`)
+  deleteAnimal({ commit }, {id_animal, token}) {
+    return new Promise((resolve, reject) => {
+      axios
+      .delete(`/api/animals/${id_animal}/`, {headers: { 'Authorization' : 'Token ' + token }})
+      .then(res => {
+        resolve(res)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
   },
-  createAnimal({ commit }, animal) {
+  
+  createAnimal({ commit }, {animal, token}) {
     console.log(animal.imageFile)
     let formData = new FormData()
     formData.append('name', animal.name)
@@ -84,12 +66,12 @@ const actions = {
     axios({
       method: 'post',
       url: '/api/animals/',
-      header: { 'Content-Type' : 'multipart/form-data' },
+      headers: { 'Content-Type' : 'multipart/form-data', 'Authorization' : 'Token ' + token },
       data: formData,
     })
     .catch(err => console.log(err.response.data))
   },
-  modifyAnimals({ commit }, animales){
+  modifyAnimals({ commit }, {animales, token}){
     return new Promise((resolve,
       reject) => {
         let formData = new FormData()
@@ -105,7 +87,7 @@ const actions = {
         axios({
           method: 'put',
           url: `/api/animals/${animales.id_animal}/`,
-          header: { 'Content-Type' : 'multipart/form-data' },
+          headers: { 'Content-Type' : 'multipart/form-data', 'Authorization' : 'Token ' + token},
           data: formData,
         })
         .then(response => {

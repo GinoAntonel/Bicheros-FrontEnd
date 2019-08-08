@@ -135,10 +135,11 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
   export default {
     props: {
       animales: {
-        type: Number
+        type: Object
       },
     },
     data () {
@@ -159,9 +160,14 @@
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
+    computed: mapState({
+      token: state => state.user.token
+    }),
     methods: {
-      modifyAnimals(animales) {
-        this.$store.dispatch('animal/modifyAnimals', this.animales)
+      modifyAnimals() {
+        let animales = this.animales
+        let token = this.token
+        this.$store.dispatch('animal/modifyAnimals', {animales, token})
         this.$router.push({ path: '/' })
         this.$router.go()
       },

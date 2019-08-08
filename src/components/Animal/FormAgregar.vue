@@ -97,6 +97,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex' 
+
   export default {
     data: () => ({
       dialog: false,
@@ -114,14 +116,19 @@
       },
       imageName: '',
     }),
+    computed: mapState({
+      token: state => state.user.token
+    }),
     watch: {
       menu (val) {
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
     methods: {
-      addAnimal(animal){
-        this.$store.dispatch('animal/createAnimal', this.animal)
+      addAnimal(){
+        let animal = this.animal
+        let token = this.token
+        this.$store.dispatch('animal/createAnimal', {animal, token})
         this.$router.go()
       },
       pickFile () {

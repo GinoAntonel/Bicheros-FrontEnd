@@ -21,11 +21,11 @@ const mutations = {
 }
 
 const actions = {
-  obtainAmount({ commit }) {
+  obtainAmount({ commit }, token) {
     return new Promise((resolve,
       reject) => {
         axios
-        .get('/api/monto/')
+        .get('/api/monto/', {headers: { 'Authorization' : 'Token ' + token }})
         .then(response => {
           commit('setAmounts', response.data)
           resolve()
@@ -42,11 +42,11 @@ const actions = {
         .catch(error => { console.log(error) })
       })
   },
-  obtainSaldo({ commit }, saldo) {
+  obtainSaldo({ commit }, {saldo, token}) {
     return new Promise((resolve,
       reject) => {
         axios
-        .get('/api/monto/')
+        .get('/api/monto/', {headers: { 'Authorization' : 'Token ' + token }})
         .then(response => {
           var balance = response.data
           for(var x = 0; x < balance.length; x++){
@@ -64,13 +64,19 @@ const actions = {
         .catch(error => { console.log(error) })
       })
   },
-  deleteMonto({ commit }, id) {
-    return new Promise((resolve,
-      reject) => {
-        axios.delete(`/api/monto/${id}/`)
+  deleteMonto({ commit }, {id, token}) {
+    return new Promise((resolve, reject) => {
+      axios
+      .delete(`/api/monto/${id}/`, {headers: { 'Authorization' : 'Token ' + token }})
+      .then(res => {
+        resolve(res)
       })
+      .catch(err => {
+        reject(err)
+      })
+    })
   },
-  createMonto({ commit }, monto) {
+  createMonto({ commit }, {monto, token}) {
     let formData = new FormData()
     formData.append('amount', monto.amount)
     formData.append('date', monto.date)
@@ -83,12 +89,12 @@ const actions = {
     axios({
       method: 'post',
       url: '/api/monto/',
-      header: { 'Content-Type' : 'multipart/form-data' },
+      headers: { 'Content-Type' : 'multipart/form-data', 'Authorization' : 'Token ' + token },
       data: formData,
     })
     .catch(err => console.log(err.response.data))
   },
-  modifyMonto({ commit }, montos){
+  modifyMonto({ commit }, {montos, token}){
     return new Promise((resolve,
       reject) => {
         let formData = new FormData()
@@ -104,7 +110,7 @@ const actions = {
         axios({
           method: 'put',
           url: `/api/monto/${montos.id}/`,
-          header: { 'Content-Type' : 'multipart/form-data' },
+          headers: { 'Content-Type' : 'multipart/form-data', 'Authorization' : 'Token ' + token },
           data: formData,
         })
         .then(response => {

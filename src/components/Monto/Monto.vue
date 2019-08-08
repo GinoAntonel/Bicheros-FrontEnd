@@ -53,7 +53,8 @@
     },
     computed: mapState({
       amounts: state => state.monto.amounts,
-      saldos: state => state.monto.saldos
+      saldos: state => state.monto.saldos,
+      token: state => state.user.token
     }),
     mounted() {
       this.getAmount()
@@ -68,14 +69,19 @@
     },
     methods: {
       getAmount(){
-        this.$store.dispatch('monto/obtainAmount')
+        this.$store.dispatch('monto/obtainAmount', this.token)
       },
       getSaldo(){
-        this.$store.dispatch('monto/obtainSaldo', this.saldo)
+        let saldo = this.saldo
+        let token = this.token
+        this.$store.dispatch('monto/obtainSaldo', {saldo, token})
       },
       deleteMonto(id){
-        this.$store.dispatch('monto/deleteMonto', id)
+        let token = this.token
+        this.$store
+        .dispatch('monto/deleteMonto', {id, token}).then(() => {
         this.$router.go()
+      }) 
       }
     }
   }

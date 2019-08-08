@@ -87,6 +87,7 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex'
   export default {
     props: {
       montos: {
@@ -103,14 +104,19 @@
         menu: false,
       }
     },
+    computed: mapState({
+      token: state => state.user.token
+    }),
     watch: {
       menu (val) {
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
     methods: {
-      modifyMonto(montos) {
-        this.$store.dispatch('monto/modifyMonto', this.montos)
+      modifyMonto() {
+        let montos = this.montos
+        let token = this.token
+        this.$store.dispatch('monto/modifyMonto', {montos, token})
         this.$router.push({ path: '/monto' })
         this.$router.go()
       },

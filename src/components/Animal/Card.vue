@@ -89,13 +89,13 @@ export default {
   },
   computed: mapState({
     animals: state => state.animal.animals,
-    token: state => state.animal.token
+    token: state => state.user.token
   }),
   mounted() {
     this.getAnimals()
   },
   methods: {
-    getAnimals(toke) {
+    getAnimals(token) {
       this.$store.dispatch('animal/obtainAnimals', this.token).then(res => {
       
       for (let i = 0; i < this.animals.length; i++){
@@ -103,9 +103,13 @@ export default {
       }
       })
     },
-    deleteAnimal(id) {
-      this.$store.dispatch('animal/deleteAnimal', id) // accion que va a ejecutar el store
-      this.$router.go()
+    deleteAnimal(id_animal) {
+      let token = this.token
+      this.$store
+      .dispatch('animal/deleteAnimal', {id_animal, token}).then(() => {
+        this.$router.go()
+      }) // accion que va a ejecutar el store
+
     },
     getBottomnav(id) {
       return this.bottomNav[id-1]
