@@ -4,9 +4,6 @@
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
-          <v-flex xs1>
-              <AgregarVeterinaria/>
-          </v-flex>
           <v-flex xs10>
             <v-expansion-panel>
               <v-expansion-panel-content v-for="veterinaria in veterinarias" :key="veterinaria.id_veterinaria">
@@ -49,7 +46,7 @@
 import Toolbar from "../Base/Toolbar"
 import Footer from "../Base/Footer"
 import { mapState } from 'vuex'
-import AgregarVeterinaria from './AgregarVeterinaria'
+
 import Vue from 'vue'
 import ModificarVeterinaria from './ModificarVeterinaria'
 
@@ -59,7 +56,6 @@ export default {
   components: {
     Toolbar,
     Footer,
-    AgregarVeterinaria,
     ModificarVeterinaria
   },
   computed: mapState({

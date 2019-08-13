@@ -3,6 +3,7 @@
     <Toolbar/>
     <v-container grid-list-md text-xs-center>
       <v-layout row wrap>
+        <v-flex v-if="!animalsSearch.length"><NotFound/></v-flex>
         <v-flex v-for="(animal, index) in animalsSearch"
         :key="animal.id_animal" xs4>
           <v-card height="400px">
@@ -86,6 +87,7 @@
   import Toolbar from '../Base/Toolbar'
   import Footer from '../Base/Footer'
   import FormModificar from '../Animal/FormModificar'
+  import NotFound from '../Search/NotFound'
 
   Vue.component('FormModificar', FormModificar)
 
@@ -100,6 +102,7 @@
       FormModificar,
       Toolbar,
       Footer,
+      NotFound
     },
   computed: mapState({
     animalsSearch: state => state.animal.animalsSearch,

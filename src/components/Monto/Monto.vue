@@ -4,7 +4,6 @@
     <v-content>
     <v-container grid-list-md text-xs-center>
       <p> {{ saldos }}</p>
-      <FormAgregarMonto/>
       <v-layout row wrap>
         <v-flex v-for="monto in amounts" xs4>
           <v-card class="elevation-16 mx-auto" width="300">
@@ -39,7 +38,6 @@
   import Toolbar from '../Base/Toolbar'
   import Footer from '../Base/Footer'
   import Vue from 'vue'
-  import FormAgregarMonto from './FormAgregarMonto'
   import FormModificarMonto from './FormModificarMonto'
 
   Vue.component('FormModificarMonto', FormModificarMonto)
@@ -64,7 +62,6 @@
     components: {
       Toolbar,
       Footer,
-      FormAgregarMonto,
       FormModificarMonto
     },
     methods: {

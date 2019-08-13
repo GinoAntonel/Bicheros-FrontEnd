@@ -3,7 +3,6 @@
     <Toolbar/>
     <v-content>
       <v-container grid-list-md text-xs-center>
-        <AgregarDonation/>
         <v-layout row wrap>
           <v-flex xs4 v-for="donation in donations" :key="donation.id_donations">
             <v-card class="elevation-16 mx-auto" width="300">

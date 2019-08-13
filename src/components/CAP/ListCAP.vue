@@ -4,9 +4,6 @@
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
-          <v-flex xs1>
-            <AgregarCAP/>
-          </v-flex>
           <v-flex xs10>
             <v-expansion-panel>
               <v-expansion-panel-content v-for="cap in clientes" :key="cap.id_cap">
@@ -53,7 +50,6 @@
 import Toolbar from "../Base/Toolbar"
 import Footer from "../Base/Footer"
 import { mapState } from 'vuex'
-import AgregarCAP from "../CAP/AgregarCAP"
 import Vue from 'vue'
 import EditCAP from './EditCAP'
 
@@ -63,7 +59,6 @@ export default {
   components: {
     Toolbar,
     Footer,
-    AgregarCAP,
     EditCAP
   },
   computed: mapState({

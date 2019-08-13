@@ -11,6 +11,48 @@
     absolute
     overflow
     app>
+      <v-list dense>
+      <v-tooltip right>
+        <template v-slot:activator="{ on }">
+          <v-list-tile @click="$router.push({ path: '/monto'})">
+            <v-list-tile-action>
+              <v-icon v-on="on">attach_money</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </template>
+        <span>Monto</span>
+      </v-tooltip>
+      <v-tooltip right>
+        <template v-slot:activator="{ on }">
+          <v-list-tile @click="$router.push({ path: '/clientes'})">
+            <v-list-tile-action>
+              <v-icon v-on="on">account_box</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </template>
+        <span>Clientes</span>
+      </v-tooltip>
+      <v-tooltip right>
+        <template v-slot:activator="{ on }">
+          <v-list-tile @click="$router.push({ path: '/veterinarias'})">
+            <v-list-tile-action>
+              <v-icon v-on="on">add_location</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </template>
+        <span>Veterinaria</span>
+      </v-tooltip>
+      <v-tooltip right>
+        <template v-slot:activator="{ on }">
+          <v-list-tile @click="$router.push({ path: '/donaciones'})">
+            <v-list-tile-action>
+              <v-icon v-on="on">add_shopping_cart</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </template>
+        <span>Donaciones</span>
+      </v-tooltip>
+      </v-list>
     </v-navigation-drawer>
     <v-toolbar :clipped-left="primaryDrawer.clipped" app absolute>
       <v-toolbar-side-icon

@@ -15,6 +15,8 @@
 
 
 <script>
+import { mapState } from 'vuex'
+
   export default {
     name: 'SearchA',
     data() {
@@ -22,11 +24,16 @@
         wordSearch: '',
       }
     },
+    computed: mapState({
+      token: state => state.user.token
+    }),
     methods: {
       search(animalSearch) {
         console.log(this.wordSearch)
+        let wordSearch = this.wordSearch
+        let token = this.token
         this.$store
-          .dispatch('animal/searchAnimals', this.wordSearch)
+          .dispatch('animal/searchAnimals', {wordSearch, token})
           .then(() => {
             this.$router.push({ name: 'search' })
           })

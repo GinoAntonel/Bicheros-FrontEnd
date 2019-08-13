@@ -97,12 +97,13 @@ const actions = {
         .catch(err => console.log(err.response.data))
       })
   },
-  searchAnimals( context , wordSearch){
+  searchAnimals( context , {wordSearch, token}){
     return new Promise ((resolve,
       reject) => {
         axios({
           method: 'get',
           url: `/api/animals/?search=${wordSearch}`,
+          headers: { 'Authorization' : 'Token ' + token},
         })
         .then(response => {
           context.commit('setSearch', response.data)
