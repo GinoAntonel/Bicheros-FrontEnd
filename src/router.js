@@ -6,6 +6,10 @@ import Login from './components/User/Login'
 import Error from './components/Error/Error'
 import SearchAnimal from  './components/Search/SearchAnimal'
 import Monto from './components/Monto/Monto'
+import Register from './components/User/Register'
+import ListCAP from "./components/CAP/ListCAP"
+import DonationList from "./components/Donation/DonationList"
+import Veterinaria from './components/Veterinaria/Veterinaria'
 
 Vue.use(VueRouter)
 
@@ -37,6 +41,30 @@ const routes = [
     ]
   },
   {
+    path: '/clientes',
+    component: ListCAP,
+    name: 'listCAP',
+    meta: {
+      title: 'Lista Clientes'
+    }
+  },
+  {
+    path: '/veterinarias',
+    component: Veterinaria,
+    name: 'veterinaria',
+    meta: {
+      title: 'Lista Veterinarias'
+    }
+  },
+  {
+    path: '/donaciones',
+    component: DonationList,
+    name: 'DonationList',
+    meta: {
+      title: 'Donciones'
+    }
+  },
+  {
     path: '/monto',
     component: Monto,
     name: 'monto',
@@ -58,6 +86,14 @@ const routes = [
     name: 'login',
     meta: {
       title: 'Login'
+    }
+  },
+  {
+    path: '/register',
+    component: Register,
+    name: 'register',
+    meta: {
+      title: 'Register'
     }
   },
 ]

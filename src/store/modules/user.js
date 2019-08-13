@@ -41,6 +41,25 @@ const actions = {
       })
     })
   },
+  registerUser({ commit }, user) {
+    return new Promise((resolve, reject) => {
+      let formData = new FormData()
+      formData.append("username", user.username)
+      formData.append("email", user.email)
+      formData.append("password1", user.password)
+      formData.append("password2", user.password2)
+      axios({
+        method: 'post',
+        url: '/registration/',
+        headers: { 'Content-Type' : 'multipart/form-data'},
+        data: formData,
+      })
+      .then(res => {
+        resolve(res)
+      })
+      .catch(err => console.log(err.response.data))
+    })
+  }
 } 
 
 export default {

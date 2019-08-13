@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 import animal from './modules/animal.js'
 import monto from './modules/monto.js'
 import user from './modules/user.js'
+import cap from "./modules/cap.js"
+import donation from "./modules/donation.js"
+import veterinaria from './modules/veterinaria.js'
 
 Vue.use(Vuex)
 
@@ -11,5 +14,8 @@ export default new Vuex.Store({
     animal,
     monto,
     user,
+    cap,
+    donation,
+    veterinaria
   },
 })
