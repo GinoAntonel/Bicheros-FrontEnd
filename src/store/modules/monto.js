@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://192.168.100.231:8080';
+axios.defaults.baseURL = 'http://192.168.100.113:8080';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -29,15 +29,6 @@ const actions = {
         .then(response => {
           commit('setAmounts', response.data)
           resolve()
-          var balance = response.data
-          for(var x = 0; x < balance.length; x++){
-            if (balance[x]['tipo'] == 'Ingreso'){
-              saldo += balance[x]['amount'];
-            }
-            else {
-              saldo -= balance[x]['amount']
-            }
-          }
         })
         .catch(error => { console.log(error) })
       })
@@ -101,7 +92,7 @@ const actions = {
         formData.append('id', montos.id)
         formData.append('amount', montos.amount)
         formData.append('date', montos.date)
-        if (montos.tipo == 'Ingreso'){
+        if (montos.tipo === 'Ingreso'){
           formData.append('tipo', 0)
         }
         else{

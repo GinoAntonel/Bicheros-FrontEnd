@@ -70,6 +70,26 @@
                     v-model="animal.gender"
                   ></v-select>
                 </v-flex>
+                <v-flex xs12 sm6>
+                  <v-select
+                    :items="clientes"
+                    item-text="nameC"
+                    item-value='id_cap'
+                    label="Cliente"
+                    required
+                    v-model='animal.cap'
+                  ></v-select>
+                </v-flex>
+                <v-flex xs12 sm6>
+                  <v-select
+                    :items="veterinarias"
+                    item-text="name"
+                    item-value='id_veterinaria'
+                    label="Veterinaria"
+                    required
+                    v-model='animal.veterinaria'
+                  ></v-select>
+                </v-flex>
                 <v-flex xs12 sm6 class="text-xs-center text-sm-center text-md-center text-lg-center">
                   <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
                   <input
@@ -113,18 +133,33 @@ import { mapState } from 'vuex'
         gender: '',
         imageFile: '',
         imageUrl: '',
+        cap: '',
+        veterinaria: ''
       },
       imageName: '',
     }),
     computed: mapState({
-      token: state => state.user.token
+      token: state => state.user.token,
+      clientes: state => state.cap.clientes,
+      veterinarias: state => state.veterinaria.veterinarias
     }),
     watch: {
       menu (val) {
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
+    mounted() {
+      let token = this.token
+      let clientes = this.clientes
+      this.$store.dispatch("cap/obtainClients", {token, clientes})
+      this.getVeterinaria()
+    },
     methods: {
+      getVeterinaria(){
+      let token = this.token
+      let veterinarias = this.veterinarias
+      this.$store.dispatch("veterinaria/obtainVeterinarias", {token, veterinarias})
+      },
       addAnimal(){
         let animal = this.animal
         let token = this.token

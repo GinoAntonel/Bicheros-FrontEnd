@@ -1,10 +1,10 @@
 <template>
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="750px" transition="dialog-bottom-transition">
-      <template v-slot:activator="{ on }">
-        <v-btn color="primary" v-on="on" text>
-          Modify
-        </v-btn>
+      <template v-slot:activator="{ on }" >
+          <v-btn icon class="hola" v-on='on'>
+            <v-icon > edit </v-icon>
+          </v-btn>
       </template>
       <v-card>
         <v-toolbar dark>
@@ -33,7 +33,7 @@
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Fecha Encontrado:</label>
+              <label>Fecha:</label>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
@@ -51,7 +51,7 @@
                 <template v-slot:activator="{ on }">
                   <v-text-field
                     v-model="montos.date"
-                    label="Fecha de Encuentro"
+                    label="Fecha"
                     readonly
                     v-on="on"
                     outline
@@ -68,14 +68,16 @@
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Especie:</label>
+              <label>Tipo de donacion:</label>
             </v-flex>
 
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="montos.tipo"
-              ></v-text-field>
+            <v-flex xs12 sm6>
+              <v-select
+                :items="['Ingreso', 'Gasto']"
+                label="Tipo"
+                required
+                v-model="montos.tipo"
+              ></v-select>
             </v-flex>
             
           </v-layout>
@@ -116,9 +118,9 @@
       modifyMonto() {
         let montos = this.montos
         let token = this.token
-        this.$store.dispatch('monto/modifyMonto', {montos, token})
-        this.$router.push({ path: '/monto' })
-        this.$router.go()
+        this.$store.dispatch('monto/modifyMonto', {montos, token}).then(() => {
+          this.$router.go()
+        })
       },
       save (date) {
         this.$refs.menu.save(date)
@@ -126,3 +128,10 @@
     }
   }
 </script>
+
+<style>
+  .hola{
+    justify-content: center;
+    margin-left: 800px;
+  }
+</style>

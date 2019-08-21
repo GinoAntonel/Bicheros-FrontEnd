@@ -37,9 +37,9 @@
       }
     }),
     methods: {
-      login(user) {             
+      login(user) {            
         this.$store
-          .dispatch('animal/obtainToken', this.user)
+          .dispatch('user/obtainToken', this.user)
           .then(() => {
             this.$router.push({ name: 'home' })
           })

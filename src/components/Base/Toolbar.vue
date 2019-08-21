@@ -60,7 +60,12 @@
       ></v-toolbar-side-icon>
       <v-toolbar-title>Bicheros</v-toolbar-title>
       <v-spacer/>
-      <Search/>
+      <div v-if="$router.history.current['path'] == '/'">
+        <Search/>
+      </div>
+      <div v-if="$router.history.current['path'] == '/search'">
+        <Search/>
+      </div>
     </v-toolbar>
   </div>
 </template>

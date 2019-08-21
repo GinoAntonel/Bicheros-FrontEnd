@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://192.168.100.231:8080';
+axios.defaults.baseURL = 'http://192.168.100.113:8080';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -63,6 +63,8 @@ const actions = {
         formData.append('gender', 1)
       }
     formData.append('photo', animal.imageFile)
+    formData.append('cap', animal.cap)
+    formData.append('veterinaria', animal.veterinaria)
     axios({
       method: 'post',
       url: '/api/animals/',

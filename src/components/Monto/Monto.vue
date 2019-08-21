@@ -2,31 +2,54 @@
   <v-app id="base" dark>
     <Toolbar/>
     <v-content>
-    <v-container grid-list-md text-xs-center>
-      <p> {{ saldos }}</p>
-      <v-layout row wrap>
-        <v-flex v-for="monto in amounts" xs4>
-          <v-card class="elevation-16 mx-auto" width="300">
-            <v-card-title class="headline" primary-title>
-              {{ monto.amount }}
-            </v-card-title>
-            <v-card-text>
-              {{ monto.date }}
-              <div class="text-center mt-12">
-                {{ monto.tipo }}
-              </div>
-            </v-card-text>
-            <v-divider></v-divider>
-            <v-card-actions class="justify-space-between">
-              <FormModificarMonto :montos="monto"/>
-              <v-btn color="primary" text @click="deleteMonto(monto.id)">
-                Delete
-              </v-btn>
-            </v-card-actions>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
+      <v-container grid-list-md text-xs-center>
+        <v-layout row wrap>
+          <v-flex xs10>
+            <v-expansion-panel>
+              <v-expansion-panel-content v-for="monto in amounts" :key="monto.id">
+                <template v-slot:header>
+                 {{ monto.amount }}
+                    <td class="justify-left layout px-0">
+                      <FormModificarMonto :montos='monto'/>
+                      <v-btn icon class="mr-0" @click="deleteMonto(monto.id)">
+                        <v-icon> delete </v-icon>
+                      </v-btn>
+                      </td>
+                </template>
+                <v-card>
+                  <v-divider></v-divider>
+                  <v-list dense>
+                    <v-list-tile>
+                      <v-list-tile-content class="align-center">Tipo:</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ monto.tipo }}</v-list-tile-content>
+                    </v-list-tile>
+                    <v-list-tile>
+                      <v-list-tile-content class="align-center">Fecha:</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ monto.date }}</v-list-tile-content>
+                    </v-list-tile>
+                  </v-list>
+                </v-card>
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-flex>
+          <v-flex xs2 v-if='saldos >= 0'>
+            <v-alert
+            :value="true"
+            type="success"
+            >
+              Saldo {{ saldos }}
+            </v-alert>
+          </v-flex>
+          <v-flex xs1 v-if='saldos < 0'>
+            <v-alert
+            :value="true"
+            type="error"
+            >
+              {{ saldos }}
+            </v-alert>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </v-content>
     <router-view/>
     <Footer/>
@@ -46,7 +69,7 @@
     data() {
       return {
         saldo: 0,
-        balance: []
+        balance: [],
       }  
     },
     computed: mapState({
