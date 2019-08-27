@@ -1,19 +1,23 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://192.168.100.113:8080';
+axios.defaults.baseURL = 'http://192.168.150.53:8080';
 
 const veterinaria_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const veterinaria_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
 
 const state =  {
   veterinarias: null,
+  vetSearch: null
 }
 
 const mutations = {
   setVeterinarias(state, veterinarias) {
     state.veterinarias = veterinarias
   },
+  setSearch(state, vetSearch) {
+    state.vetSearch = vetSearch
+  }
 }
 
 const actions = {
@@ -27,6 +31,19 @@ const actions = {
           resolve()
         })
         .catch(error => { console.log(error) })
+      })
+  },
+  searchVet(context, {wordSearch, token}){
+    return new Promise((resolve,
+      reject) => {
+        axios
+        .get(`/api/veterinaria/?search=${wordSearch}`, {headers: { 'Authorization' : 'Token ' + token }})
+        .then(response => {
+          context.commit('setSearch', response.data)
+          console.log(response.data)
+          resolve()
+        })
+        .catch(err => console.log(err.response.data))
       })
   },
   deleteVeterinarias({commit}, {id_veterinaria, token}){

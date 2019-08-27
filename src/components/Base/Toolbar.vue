@@ -60,18 +60,29 @@
       ></v-toolbar-side-icon>
       <v-toolbar-title>Bicheros</v-toolbar-title>
       <v-spacer/>
-      <div v-if="$router.history.current['path'] == '/'">
+      <div v-if="
+      $router.history.current['path'] == '/veterinarias' ||
+      $router.history.current['path'] == '/searchVet'
+      ">
         <Search/>
       </div>
-      <div v-if="$router.history.current['path'] == '/search'">
-        <Search/>
+      <div v-if="$router.history.current['path'] == '/' ||
+      $router.history.current['path'] == '/search'
+      "> 
+        
       </div>
+      <div v-if="$router.history.current['path'] == '/' ||
+      $router.history.current['path'] == '/search'
+      "> 
+        <Search/>
+      </div>    
     </v-toolbar>
   </div>
 </template>
 
 <script>
 import Search from './Search'
+
   export default {
     data: () => ({
       dark: true,
@@ -89,7 +100,7 @@ import Search from './Search'
       },
     }),
     components: {
-      Search
+      Search,
     }
   }
 </script>

@@ -37,11 +37,11 @@
       }
     }),
     methods: {
-      login(user) {            
+      login(user) {
         this.$store
           .dispatch('user/obtainToken', this.user)
           .then(() => {
-            this.$router.push({ name: 'home' })
+            this.$router.push({ path: '/' })
           })
       }
     }

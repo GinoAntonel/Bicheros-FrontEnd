@@ -10,6 +10,7 @@ import Register from './components/User/Register'
 import ListCAP from "./components/CAP/ListCAP"
 import DonationList from "./components/Donation/DonationList"
 import Veterinaria from './components/Veterinaria/Veterinaria'
+import SearchVeterinaria from './components/Veterinaria/SearchVeterinaria'
 
 Vue.use(VueRouter)
 
@@ -46,6 +47,14 @@ const routes = [
     name: 'listCAP',
     meta: {
       title: 'Lista Clientes'
+    }
+  },
+  {
+    path: '/searchVet',
+    component: SearchVeterinaria,
+    name: 'searchVet',
+    meta: {
+      title: 'Veterinarias Buscadas'
     }
   },
   {

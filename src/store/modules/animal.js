@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://192.168.100.113:8080';
+axios.defaults.baseURL = 'http://192.168.150.53:8080';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -99,12 +99,20 @@ const actions = {
         .catch(err => console.log(err.response.data))
       })
   },
-  searchAnimals( context , {wordSearch, token}){
+  searchAnimals( context , {wordSearch, token, sexSearch}){
     return new Promise ((resolve,
       reject) => {
+        let x = 5
+        console.log(sexSearch + ' ' + wordSearch)
+        if (sexSearch === "Masculino"){
+          x = 0
+        }else{
+          x = 1
+        }
+        console.log('Buscando: '+ x)
         axios({
           method: 'get',
-          url: `/api/animals/?search=${wordSearch}`,
+          url: `/api/animals/?search=${x + ' ' + wordSearch}`, 
           headers: { 'Authorization' : 'Token ' + token},
         })
         .then(response => {
@@ -114,7 +122,7 @@ const actions = {
         })
         .catch(err => console.log(err.response.data))
       })
-  }
+  },
 } 
 
 export default {
