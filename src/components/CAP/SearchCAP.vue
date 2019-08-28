@@ -6,11 +6,11 @@
         <v-layout row wrap>
           <v-flex xs10>
             <v-expansion-panel>
-              <v-expansion-panel-content v-for="veterinaria in vetSearch" :key="veterinaria.id_veterinaria">
+              <v-expansion-panel-content v-for="cap in capSearch" :key="cap.id_cap">
                 <template v-slot:header>
-                  <div> {{ veterinaria.name }}
-                      <ModificarVeterinaria :veterinaria="veterinaria"/>
-                    <v-icon small class="mr-2" @click="deleteVeterinaria(veterinaria.id_veterinaria)"> delete </v-icon>
+                  <div> {{ cap.nameC }} {{ cap.last_nameC }} 
+                    <EditCAP :client="cap"/>
+                    <v-icon small class="mr-2" @click="deleteClient(cap.id_cap)"> delete </v-icon>
                   </div>
                 </template>
                 <v-card>
@@ -18,15 +18,19 @@
                   <v-list dense>
                     <v-list-tile>
                       <v-list-tile-content class="align-center">Mail:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ veterinaria.email }}</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ cap.email }}</v-list-tile-content>
+                    </v-list-tile>
+                    <v-list-tile>
+                      <v-list-tile-content class="align-center">Fecha de Nacimiento:</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ cap.date_of_birth }}</v-list-tile-content>
                     </v-list-tile>
                     <v-list-tile>
                       <v-list-tile-content class="align-center">Direccion:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ veterinaria.address }}</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ cap.address }}</v-list-tile-content>
                     </v-list-tile>
                     <v-list-tile>
                       <v-list-tile-content class="align-center">Telefono:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ veterinaria.phone }}</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ cap.telefono }}</v-list-tile-content>
                     </v-list-tile>
                   </v-list>
                 </v-card>
@@ -46,20 +50,20 @@
 import Toolbar from "../Base/Toolbar"
 import Footer from "../Base/Footer"
 import { mapState } from 'vuex'
-
 import Vue from 'vue'
-import ModificarVeterinaria from './ModificarVeterinaria'
+import EditCAP from './EditCAP'
 
-Vue.component('ModificarVeterinaria', ModificarVeterinaria)
+Vue.component('EditCAP', EditCAP)
 
 export default {
   components: {
     Toolbar,
     Footer,
-    ModificarVeterinaria
+    EditCAP
   },
   computed: mapState({
-    vetSearch: state => state.veterinaria.vetSearch
+    token: state => state.user.token,
+    capSearch: state => state.cap.capSearch
   }),
   mounted(){
   },

@@ -44,8 +44,18 @@
         <v-btn type="submit" hidden/>
       </v-form>
     </div>
-    <div>
-
+    <div id="capSearch" v-if="$router.history.current['path'] == '/clientes'
+    || $router.history.current['path'] == '/searchCap'">
+      <v-form @submit.prevent='searchCAP'>
+        <v-text-field
+          v-model="capSearch"
+          class="mx-3"
+          label="Search"
+          prepend-inner-icon="search"
+          flat
+          solo-inverte/>
+        <v-btn type="submit" hidden/>
+      </v-form>
     </div>
   </v-content>
 </template>
@@ -84,6 +94,15 @@ import { mapState } from 'vuex'
           .then(() => {
             this.$router.push({ path: '/searchVet' })
           })
+      },
+      searchCAP(){
+        let capSearch = this.capSearch
+        let token = this.token
+        this.$store
+        .dispatch('cap/searchCap', {capSearch, token})
+        .then(() => {
+          this.$router.push({ path: '/searchCap' })
+        })
       }
     }
   }

@@ -8,12 +8,16 @@ const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975H
 
 const state =  {
   clientes: null,
+  capSearch: null
 }
 
 const mutations = {
   setClientes(state, clientes) {
     state.clientes = clientes
   },
+  setSearch(state, capSearch) {
+    state.capSearch = capSearch
+  }
 }
 
 const actions = {
@@ -40,6 +44,19 @@ const actions = {
         .catch(err => {
           reject(err)
         })
+      })
+  },
+  searchCap(context, {capSearch, token}){
+    return new Promise((resolve,
+      reject) => {
+        axios
+        .get(`/api/cap/?search=${capSearch}`, {headers: { 'Authorization' : 'Token ' + token }})
+        .then(response => {
+          context.commit('setSearch', response.data)
+          console.log(response.data)
+          resolve()
+        })
+        .catch(err => console.log(err.response.data))
       })
   },
   createClient({commit}, {client, token}){

@@ -2,9 +2,8 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex v-for="(animal, index) in animals" xs4>
-        <v-card height="400px">
-          <v-flex v-if="bottomNav[index] == 'img'">
-            <v-img :src="`${animal.photo}`" height="400px" contain></v-img>
+        <v-card height="500px">
+          <v-flex v-if="bottomNav[index] == 'img'" >
           </v-flex>
           <v-flex v-if="bottomNav[index] == 'delete'">
             <v-container>
@@ -43,6 +42,26 @@
                     <v-list-tile-content>Genero:</v-list-tile-content>
                     <v-list-tile-content class="align-end">{{ animal.gender }}</v-list-tile-content>
                   </v-list-tile>
+                  <v-list-tile>
+                    <v-list-tile-content>Caracter:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.temperamento }}</v-list-tile-content>
+                  </v-list-tile>
+                  <div v-for="cap in clientes">
+                    <div v-if="animal.cap == cap.id_cap">
+                      <v-list-tile>
+                        <v-list-tile-content>Cliente:</v-list-tile-content>
+                        <v-list-tile-content class="align-end">{{ cap.nameC }}</v-list-tile-content>
+                      </v-list-tile>
+                    </div>
+                  </div>
+                  <div v-for="veterinaria in veterinarias">
+                    <div v-if="animal.veterinaria == veterinaria.id_veterinaria">
+                      <v-list-tile>
+                        <v-list-tile-content>Veterinaria:</v-list-tile-content>
+                        <v-list-tile-content class="align-end">{{ veterinaria.name }}</v-list-tile-content>
+                      </v-list-tile>
+                    </div>
+                  </div>
                 </v-list>
               </v-card>
             </v-flex>
@@ -74,7 +93,9 @@
 import { mapState } from 'vuex'
 import Vue from 'vue'
 import FormModificar from './FormModificar'
+import VueYoutube from 'vue-youtube'
 
+Vue.use(VueYoutube)
 Vue.component('FormModificar', FormModificar)
 
 export default {
@@ -89,12 +110,20 @@ export default {
   },
   computed: mapState({
     animals: state => state.animal.animals,
-    token: state => state.user.token
+    token: state => state.user.token,
+    clientes: state => state.cap.clientes,
+    veterinarias: state => state.veterinaria.veterinarias,
+    player() {
+      return this.$refs.youtube.player
+    }
   }),
   mounted() {
     this.getAnimals()
   },
-  methods: {
+  methods: {    
+    playVideo() {
+      this.player.playVideo()
+    },
     getAnimals(token) {
       this.$store.dispatch('animal/obtainAnimals', this.token).then(res => {
       

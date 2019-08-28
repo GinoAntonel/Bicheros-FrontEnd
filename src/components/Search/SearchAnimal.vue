@@ -6,7 +6,7 @@
         <v-flex v-if="!animalsSearch.length"><NotFound/></v-flex>
         <v-flex v-for="(animal, index) in animalsSearch"
         :key="animal.id_animal" xs4>
-          <v-card height="400px">
+          <v-card height="500px">
             <v-flex v-if="bottomNav[index] == 'img'">
               <v-img :src="`${animal.photo}`" height="400px" contain></v-img>
             </v-flex>

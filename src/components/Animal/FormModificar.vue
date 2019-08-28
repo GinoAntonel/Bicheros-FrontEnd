@@ -112,6 +112,47 @@
             </v-flex>
 
             <v-flex xs12 sm6 md6>
+              <label>Caracter::</label>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <v-text-field
+              outline
+              v-model="animales.temperamento"
+              ></v-text-field>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <label>Cliente:</label>
+            </v-flex>
+
+            <v-flex xs12 sm6>
+              <v-select
+                :items="clientes"
+                item-text="nameC"
+                item-value='id_cap'
+                label="Cliente"
+                required
+                v-model="animales.cap"
+              ></v-select>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <label>Veterinaria:</label>
+            </v-flex>
+
+            <v-flex xs12 sm6>
+              <v-select
+                :items="veterinarias"
+                item-text="name"
+                item-value='id_veterinaria'
+                label="Cliente"
+                required
+                v-model="animales.veterinaria"
+              ></v-select>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
               <img :src="animales.photo" height="150"/>
             </v-flex>
 
@@ -161,15 +202,20 @@ import { mapState } from 'vuex'
       }
     },
     computed: mapState({
-      token: state => state.user.token
+      token: state => state.user.token,
+      clientes: state => state.cap.clientes,
+      veterinarias: state => state.veterinaria.veterinarias
     }),
     methods: {
       modifyAnimals() {
         let animales = this.animales
         let token = this.token
-        this.$store.dispatch('animal/modifyAnimals', {animales, token})
-        this.$router.push({ path: '/' })
-        this.$router.go()
+        this.$store
+        .dispatch('animal/modifyAnimals', {animales, token})
+        .then(() => {
+          this.$router.push({ path: '/' })
+          this.$router.go()
+        })
       },
       save (date) {
         this.$refs.menu.save(date)

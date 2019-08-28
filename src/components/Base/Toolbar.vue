@@ -61,21 +61,15 @@
       <v-toolbar-title>Bicheros</v-toolbar-title>
       <v-spacer/>
       <div v-if="
+      $router.history.current['path'] == '/' ||
+      $router.history.current['path'] == '/search' ||
       $router.history.current['path'] == '/veterinarias' ||
-      $router.history.current['path'] == '/searchVet'
+      $router.history.current['path'] == '/searchVet' ||
+      $router.history.current['path'] == '/clientes' ||
+      $router.history.current['path'] == '/searchCap'
       ">
         <Search/>
       </div>
-      <div v-if="$router.history.current['path'] == '/' ||
-      $router.history.current['path'] == '/search'
-      "> 
-        
-      </div>
-      <div v-if="$router.history.current['path'] == '/' ||
-      $router.history.current['path'] == '/search'
-      "> 
-        <Search/>
-      </div>    
     </v-toolbar>
   </div>
 </template>

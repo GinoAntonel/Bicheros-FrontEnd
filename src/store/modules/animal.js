@@ -65,6 +65,7 @@ const actions = {
     formData.append('photo', animal.imageFile)
     formData.append('cap', animal.cap)
     formData.append('veterinaria', animal.veterinaria)
+    formData.append('temperamento'. animal.temperamento)
     axios({
       method: 'post',
       url: '/api/animals/',
@@ -86,6 +87,9 @@ const actions = {
         if(animales.imageFile != null){
           formData.append('photo', animales.imageFile)
         }
+        formData.append('cap', animales.cap)
+        formData.append('veterinaria', animales.veterinaria)
+        formData.append('temperamento', animales.temperamento)
         axios({
           method: 'put',
           url: `/api/animals/${animales.id_animal}/`,
@@ -109,7 +113,9 @@ const actions = {
         }else{
           x = 1
         }
-        console.log('Buscando: '+ x)
+        if (sexSearch === undefined){
+          x = ''
+        }
         axios({
           method: 'get',
           url: `/api/animals/?search=${x + ' ' + wordSearch}`, 

@@ -30,8 +30,11 @@
                     required
                   ></v-text-field>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs6>
                   <v-text-field v-model="animal.place_founded" label="Lugar Encontrado" required></v-text-field>
+                </v-flex>
+                <v-flex xs6>
+                  <v-text-field v-model="animal.temperamento" label="Caracter" hint="Ej: Cariñoso, Agresivo, etc" required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-menu
@@ -134,7 +137,8 @@ import { mapState } from 'vuex'
         imageFile: '',
         imageUrl: '',
         cap: '',
-        veterinaria: ''
+        veterinaria: '',
+        temperamento: ''
       },
       imageName: '',
     }),
