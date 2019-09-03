@@ -55,6 +55,41 @@
             </v-flex>
 
             <v-flex xs12 sm6 md6>
+              <label>Fecha de Nacimiento:</label>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <v-menu
+                ref="menu2"
+                v-model="menu2"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="animales.date_of_birth"
+                    label="Fecha de Nacimiento"
+                    readonly
+                    v-on="on"
+                    outline
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  ref="picker"
+                  v-model="animales.date_of_birth"
+                  :max="new Date().toISOString().substr(0, 10)"
+                  min="1950-01-01"
+                  @change="save2"
+                ></v-date-picker>
+              </v-menu>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
               <label>Fecha Encontrado:</label>
             </v-flex>
 
@@ -112,13 +147,24 @@
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Caracter::</label>
+              <label>Caracter:</label>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
               <v-text-field
               outline
               v-model="animales.temperamento"
+              ></v-text-field>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <label>Video:</label>
+            </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <v-text-field
+              outline
+              v-model="animales.video"
               ></v-text-field>
             </v-flex>
 
@@ -193,11 +239,16 @@ import { mapState } from 'vuex'
         imageUrl: '',
         imageName: this.animales.photo,
         date: null,
+        date2: null,
         menu: false,
+        menu2: false
       }
     },
     watch: {
       menu (val) {
+        val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
+      },
+      menu2 (val) {
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
@@ -219,6 +270,9 @@ import { mapState } from 'vuex'
       },
       save (date) {
         this.$refs.menu.save(date)
+      },
+      save2 (date2) {
+        this.$refs.menu2.save(date2)
       },
       pickFile () {
         this.$refs.image.click () 

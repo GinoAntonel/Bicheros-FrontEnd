@@ -6,6 +6,7 @@ import user from './modules/user.js'
 import cap from "./modules/cap.js"
 import donation from "./modules/donation.js"
 import veterinaria from './modules/veterinaria.js'
+import historial from './modules/historial.js'
 
 Vue.use(Vuex)
 
@@ -16,6 +17,7 @@ export default new Vuex.Store({
     user,
     cap,
     donation,
-    veterinaria
+    veterinaria,
+    historial
   },
 })

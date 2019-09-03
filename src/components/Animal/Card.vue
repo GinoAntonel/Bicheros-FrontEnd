@@ -2,8 +2,9 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex v-for="(animal, index) in animals" xs4>
-        <v-card height="500px">
+        <v-card height="580px">
           <v-flex v-if="bottomNav[index] == 'img'" >
+            <a :href="`${animal.video}`">Click para ver el video</a>
           </v-flex>
           <v-flex v-if="bottomNav[index] == 'delete'">
             <v-container>
@@ -43,6 +44,10 @@
                     <v-list-tile-content class="align-end">{{ animal.gender }}</v-list-tile-content>
                   </v-list-tile>
                   <v-list-tile>
+                    <v-list-tile-content>Fecha de Nacimiento:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.date_of_birth }}</v-list-tile-content>
+                  </v-list-tile>
+                  <v-list-tile>
                     <v-list-tile-content>Caracter:</v-list-tile-content>
                     <v-list-tile-content class="align-end">{{ animal.temperamento }}</v-list-tile-content>
                   </v-list-tile>
@@ -62,6 +67,15 @@
                       </v-list-tile>
                     </div>
                   </div>
+
+                  <router-link :to="{ name: 'historial', params: { id: animal.id_animal } }">
+                  <v-list-tile @click=''>
+                    <v-list-tile-content>Historial Medico:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">
+                        <v-icon>assignment</v-icon>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                  </router-link>
                 </v-list>
               </v-card>
             </v-flex>
@@ -93,9 +107,7 @@
 import { mapState } from 'vuex'
 import Vue from 'vue'
 import FormModificar from './FormModificar'
-import VueYoutube from 'vue-youtube'
 
-Vue.use(VueYoutube)
 Vue.component('FormModificar', FormModificar)
 
 export default {
@@ -106,24 +118,18 @@ export default {
     }
   },
   components: {
-    FormModificar,
+    FormModificar
   },
   computed: mapState({
     animals: state => state.animal.animals,
     token: state => state.user.token,
     clientes: state => state.cap.clientes,
     veterinarias: state => state.veterinaria.veterinarias,
-    player() {
-      return this.$refs.youtube.player
-    }
   }),
   mounted() {
     this.getAnimals()
   },
-  methods: {    
-    playVideo() {
-      this.player.playVideo()
-    },
+  methods: {
     getAnimals(token) {
       this.$store.dispatch('animal/obtainAnimals', this.token).then(res => {
       

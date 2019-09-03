@@ -47,7 +47,6 @@ const actions = {
       })
     })
   },
-  
   createAnimal({ commit }, {animal, token}) {
     console.log(animal.imageFile)
     let formData = new FormData()
@@ -65,7 +64,9 @@ const actions = {
     formData.append('photo', animal.imageFile)
     formData.append('cap', animal.cap)
     formData.append('veterinaria', animal.veterinaria)
-    formData.append('temperamento'. animal.temperamento)
+    formData.append('temperamento', animal.temperamento)
+    formData.append('video', animal.video)
+    formData.append('date_of_birth', animal.date_of_birth)
     axios({
       method: 'post',
       url: '/api/animals/',
@@ -90,6 +91,8 @@ const actions = {
         formData.append('cap', animales.cap)
         formData.append('veterinaria', animales.veterinaria)
         formData.append('temperamento', animales.temperamento)
+        formData.append('video', animales.video)
+        formData.append('date_of_birth', animales.date_of_birth)
         axios({
           method: 'put',
           url: `/api/animals/${animales.id_animal}/`,

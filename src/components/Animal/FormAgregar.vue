@@ -37,6 +37,40 @@
                   <v-text-field v-model="animal.temperamento" label="Caracter" hint="Ej: Cariñoso, Agresivo, etc" required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
+                  <v-text-field v-model="animal.video" label="Video" required></v-text-field>
+                </v-flex>
+            <v-flex xs12>
+              <v-menu
+                ref="menu2"
+                v-model="menu2"
+                :close-on-content-click="false"
+                :nudge-right="40"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                min-width="290px"
+              >
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    v-model="animal.date_of_birth"
+                    label="Fecha de Nacimiento"
+                    readonly
+                    v-on="on"
+                    outline
+                  ></v-text-field>
+                </template>
+                <v-date-picker
+                  @input="menu2 = false"
+                  ref="picker"
+                  v-model="animal.date_of_birth"
+                  :max="new Date().toISOString().substr(0, 10)"
+                  min="1950-01-01"
+                  @change="save2"
+                ></v-date-picker>
+              </v-menu>
+            </v-flex>
+                <v-flex xs12>
                   <v-menu
                     ref="menu"
                     v-model="menu"
@@ -127,6 +161,8 @@ import { mapState } from 'vuex'
       dialog: false,
       date: null,
       menu: false,
+      menu2: null,
+      date2: null,
       animal: {
         name: '',
         race: '',
@@ -138,7 +174,9 @@ import { mapState } from 'vuex'
         imageUrl: '',
         cap: '',
         veterinaria: '',
-        temperamento: ''
+        temperamento: '',
+        video: '',
+        date_of_birth: ''
       },
       imageName: '',
     }),
@@ -149,6 +187,9 @@ import { mapState } from 'vuex'
     }),
     watch: {
       menu (val) {
+        val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
+      },
+      menu2 (val) {
         val && setTimeout(() => (this.$refs.picker.activePicker = 'YEAR'))
       }
     },
@@ -194,6 +235,9 @@ import { mapState } from 'vuex'
       },
       save (date) {
         this.$refs.menu.save(date)
+      },
+      save2 (date) {
+        this.$refs.menu2.save(date)
       },
     }
   }
