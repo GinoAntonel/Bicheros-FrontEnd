@@ -13,6 +13,7 @@ import Veterinaria from './components/Veterinaria/Veterinaria'
 import SearchVeterinaria from './components/Veterinaria/SearchVeterinaria'
 import SearchCAP from './components/CAP/SearchCAP'
 import HistorialMedico from './components/Historial/HistorialMedico'
+import Donations from './components/Donation/Donations'
 
 Vue.use(VueRouter)
 
@@ -49,6 +50,14 @@ const routes = [
     name: 'listCAP',
     meta: {
       title: 'Lista Clientes'
+    }
+  },
+  {
+    path: '/donations',
+    component: Donations,
+    name: 'Donation',
+    meta: {
+      title: 'Lista donaciones'
     }
   },
   {

@@ -17,6 +17,9 @@
       <v-flex v-if="$router.history.current['path'] == '/veterinarias'">
         <AgregarVeterinaria/>
       </v-flex>
+      <v-flex v-if="$router.history.current['path'].includes('/historial/') ">
+        <FormAgregarHM/>
+      </v-flex>
     </v-footer>
   </v-app>
 </template>
@@ -27,6 +30,7 @@ import AgregarCAP from '../CAP/AgregarCAP'
 import AgregarDonation from '../Donation/AgregarDonation'
 import FormAgregarMonto from '../Monto/FormAgregarMonto'
 import AgregarVeterinaria from '../Veterinaria/AgregarVeterinaria'
+import FormAgregarHM from "../Historial/FormAgregarHM"
 
 export default {
   data: () => ({
@@ -39,7 +43,8 @@ export default {
     AgregarCAP,
     AgregarDonation,
     FormAgregarMonto,
-    AgregarVeterinaria
+    AgregarVeterinaria,
+    FormAgregarHM
   }
 }
 </script>

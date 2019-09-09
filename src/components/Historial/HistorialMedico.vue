@@ -4,7 +4,6 @@
     <v-content>
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
-          <v-flex md4></v-flex>
           <v-flex
             xs12
             sm6
@@ -49,7 +48,14 @@
                 </v-list-tile>
 
                 <v-list-tile>
-                  <v-list-tile-content class="align-end"><FormModificarHM :historial='historial'/></v-list-tile-content>
+                  <v-list-tile-content class="align-center">
+                    <v-btn icon @click="deleteHistory(historial.id_HM)">
+                      <v-icon > delete </v-icon>
+                    </v-btn>
+                  </v-list-tile-content>
+                  <v-list-tile-content class="align-end">
+                    <FormModificarHM :historial='historial'/>
+                  </v-list-tile-content>
                 </v-list-tile>
               </v-list>
             </v-card>
@@ -95,6 +101,13 @@ export default {
       let id = this.id_animal
       this.$store.dispatch('historial/obtainHistory', {token, id})
     },
+    deleteHistory(id_HM){
+      let token = this.token
+      this.$store
+      .dispatch("historial/deleteHistory", {token, id_HM}).then(() => {
+        this.$router.go()
+      })
+    }
   }
 }
 </script>

@@ -43,9 +43,14 @@ import Vue from 'vue'
 Vue.component('ModificarDonation', ModificarDonation)
 
   export default {
+    data() {
+      return {
+        type_of_donation: this.$route.params.TOD,
+      }  
+    },
     computed: mapState({
       token: state => state.user.token,
-      donations: state => state.donation.donations
+      donations: state => state.donation.donations,
     }),
     mounted(){
       this.getDonations()
@@ -57,10 +62,16 @@ Vue.component('ModificarDonation', ModificarDonation)
       AgregarDonation
     },
     methods: {
-      getDonations(){
+      getDonations(type_of_donation){
+        let token = this.token
+        let TOD = this.type_of_donation
+        console.log('ddd' + TOD)
+        this.$store.dispatch("donation/obtainDonations2", { token, TOD })
+      },
+      getDonationsStock(){
         let token = this.token
         let donations = this.donations
-        this.$store.dispatch("donation/obtainDonations", { token, donations })
+        this.$store.dispatch("donation/obtainDonationsStock", { token })
       },
       deleteDonation(id_donation){
         let token = this.token

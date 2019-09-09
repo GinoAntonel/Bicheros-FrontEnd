@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://192.168.150.53:8080';
+axios.defaults.baseURL = 'http://192.168.150.248:8080';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -17,7 +17,7 @@ const mutations = {
 }
 
 const actions = {
-  obtainDonations({commit}, {donations, token}){
+  obtainDonations({commit}, {token}){
     return new Promise((resolve,
       reject) => {
         axios
@@ -29,6 +29,18 @@ const actions = {
         .catch(error => { console.log(error) })
       })
     },
+    obtainDonations2({commit}, {token, TOD}){
+      return new Promise((resolve,
+        reject) => {
+          axios
+          .get(`/api/donacion/?search=${TOD}`, {headers: { 'Authorization' : 'Token ' + token }})
+          .then(response => {
+            commit('setDonations', response.data)
+            resolve()
+          })
+          .catch(error => { console.log(error) })
+        })
+      },
   deleteDonation({commit}, {id_donation, token}){
     return new Promise((resolve,
       reject) => {
