@@ -2,7 +2,7 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex v-for="(animal, index) in animals" xs4>
-        <v-card height="580px">
+        <v-card height="620px">
           <v-flex v-if="bottomNav[index] == 'img'" >
             <a :href="`${animal.video}`">Click para ver el video</a>
           </v-flex>
@@ -73,6 +73,15 @@
                     <v-list-tile-content>Historial Medico:</v-list-tile-content>
                     <v-list-tile-content class="align-end">
                         <v-icon>assignment</v-icon>
+                    </v-list-tile-content>
+                  </v-list-tile>
+                  </router-link>
+
+                  <router-link :to="{ name: 'images', params: { id: animal.id_animal } }">
+                  <v-list-tile @click=''>
+                    <v-list-tile-content>Imagenes:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">
+                        <v-icon>add_photo_alternate</v-icon>
                     </v-list-tile-content>
                   </v-list-tile>
                   </router-link>

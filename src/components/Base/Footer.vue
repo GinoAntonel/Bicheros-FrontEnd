@@ -20,6 +20,9 @@
       <v-flex v-if="$router.history.current['path'].includes('/historial/') ">
         <FormAgregarHM/>
       </v-flex>
+      <v-flex v-if="$router.history.current['path'].includes('/images/') ">
+        <AgregarPhoto/>
+      </v-flex>
     </v-footer>
   </v-app>
 </template>
@@ -31,6 +34,7 @@ import AgregarDonation from '../Donation/AgregarDonation'
 import FormAgregarMonto from '../Monto/FormAgregarMonto'
 import AgregarVeterinaria from '../Veterinaria/AgregarVeterinaria'
 import FormAgregarHM from "../Historial/FormAgregarHM"
+import AgregarPhoto from '../Animal/AgregarPhoto'
 
 export default {
   data: () => ({
@@ -44,7 +48,8 @@ export default {
     AgregarDonation,
     FormAgregarMonto,
     AgregarVeterinaria,
-    FormAgregarHM
+    FormAgregarHM,
+    AgregarPhoto
   }
 }
 </script>

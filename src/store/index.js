@@ -7,6 +7,7 @@ import cap from "./modules/cap.js"
 import donation from "./modules/donation.js"
 import veterinaria from './modules/veterinaria.js'
 import historial from './modules/historial.js'
+import image from './modules/image.js'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
     cap,
     donation,
     veterinaria,
-    historial
+    historial,
+    image
   },
 })

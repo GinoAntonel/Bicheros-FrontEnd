@@ -9,6 +9,7 @@ const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975H
 const state =  {
   animals: null,
   animalsSearch: null,
+  photo: null
 }
 
 const mutations = {
@@ -17,6 +18,9 @@ const mutations = {
   },
   setSearch(state, animals) {
     state.animalsSearch = animals
+  },
+  setPhoto(state, photo) {
+    state.photo = photo
   },
 }
 

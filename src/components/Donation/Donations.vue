@@ -12,7 +12,7 @@
               <v-divider></v-divider>
               <v-card-actions class="justify-space-between">
                 <router-link :to="{ name: 'DonationList', params: { TOD: 0 } }">
-                  <v-btn class="primary" >Ver</v-btn>
+                  <v-btn class="primary">Ver</v-btn>
                 </router-link>
               </v-card-actions>
             </v-card>
