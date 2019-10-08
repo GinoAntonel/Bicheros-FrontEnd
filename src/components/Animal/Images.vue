@@ -5,15 +5,15 @@
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
           <v-flex xs4 v-for="image in photo" :key="image.id_photo">
-              <div v-for="animal in animals" :key="animal.id_animal">
-                <div v-if="animal.id_animal == image.animal">
-                  <v-card height="410px" width='410px' >
-                    <v-flex >
-                    <img :src="`${image.photo}`" height="400px" contain />
-                    </v-flex>
-                  </v-card>
-                </div>
+            <div v-for="animal in animals" :key="animal.id_animal">
+              <div v-if="animal.id_animal == image.animal">
+                <v-card height="410px" width='410px' >
+                  <v-flex class="imgg">
+                    <img :src="`${image.photo}`" height="400px" width='400px' contain aspect-ratio="1"/>
+                  </v-flex>
+                </v-card>
               </div>
+            </div>
           </v-flex>
         </v-layout>
       </v-container>
@@ -58,3 +58,8 @@
   
 </script>
 
+<style scoped>
+.imgg{
+  padding: 4px;
+}
+</style>

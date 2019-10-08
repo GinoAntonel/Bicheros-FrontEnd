@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://192.168.150.248:8080';
+axios.defaults.baseURL = 'http://127.0.0.1:8000';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -71,6 +71,7 @@ const actions = {
     formData.append('temperamento', animal.temperamento)
     formData.append('video', animal.video)
     formData.append('date_of_birth', animal.date_of_birth)
+    formData.append('historia', animal.historia)
     axios({
       method: 'post',
       url: '/api/animals/',
@@ -97,6 +98,7 @@ const actions = {
         formData.append('temperamento', animales.temperamento)
         formData.append('video', animales.video)
         formData.append('date_of_birth', animales.date_of_birth)
+        formData.append('historia', animales.historia)
         axios({
           method: 'put',
           url: `/api/animals/${animales.id_animal}/`,

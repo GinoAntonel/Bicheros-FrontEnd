@@ -192,14 +192,14 @@
                 :items="veterinarias"
                 item-text="name"
                 item-value='id_veterinaria'
-                label="Cliente"
+                label="Veterinaria"
                 required
                 v-model="animales.veterinaria"
               ></v-select>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <img :src="animales.photo" height="150"/>
+              <label>Imagen:</label>
             </v-flex>
 
             <v-flex xs12 sm6 class="text-xs-center text-sm-center text-md-center text-lg-center">
@@ -213,6 +213,18 @@
               >
               <img :src="animales.imageUrl" height="150" v-if="animales.imageUrl"/>
             </v-flex>
+
+            <v-flex xs12 sm6 md6>
+              <label>Historia:</label>
+            </v-flex>
+
+            <v-flex xs12 sm6>
+              <v-text-field
+              outline
+              v-model="animales.historia"
+              ></v-text-field>
+            </v-flex>
+
           </v-layout>
         </v-container>
         </div>

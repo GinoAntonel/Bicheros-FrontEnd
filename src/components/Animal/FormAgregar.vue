@@ -138,6 +138,9 @@
                   >
                   <img :src="animal.imageUrl" height="150" v-if="animal.imageUrl"/>
                 </v-flex>
+                <v-flex xs12 sm6> 
+                  <v-text-field v-model="animal.historia" label="Historia"></v-text-field>
+                </v-flex>
               </v-layout>
             </v-container>
           </v-form>
@@ -176,7 +179,8 @@ import { mapState } from 'vuex'
         veterinaria: '',
         temperamento: '',
         video: '',
-        date_of_birth: ''
+        date_of_birth: '',
+        historia: ''
       },
       imageName: '',
     }),

@@ -44,7 +44,7 @@
       </v-tooltip>
       <v-tooltip right>
         <template v-slot:activator="{ on }">
-          <v-list-tile @click="$router.push({ path: '/donaciones'})">
+          <v-list-tile @click="$router.push({ path: '/donations'})">
             <v-list-tile-action>
               <v-icon v-on="on">add_shopping_cart</v-icon>
             </v-list-tile-action>
@@ -58,7 +58,7 @@
       <v-toolbar-side-icon
         @click="primaryDrawer.model = !primaryDrawer.model"
       ></v-toolbar-side-icon>
-      <v-toolbar-title>Bicheros</v-toolbar-title>
+      <v-toolbar-title @click="$router.push({ path: '/'})">Bicheros</v-toolbar-title>
       <v-spacer/>
       <div v-if="
       $router.history.current['path'] == '/' ||

@@ -68,6 +68,44 @@
                     </div>
                   </div>
 
+                  <v-list-tile>
+                    <v-list-tile-content>Historia:</v-list-tile-content>
+                    <v-list-tile-content class="align-end">
+                      <v-btn
+                        color="primary"
+                        dark
+                        @click.stop="dialog = true"
+                        small
+                      >
+                        Ver Pasado
+                      </v-btn>
+
+                      <v-dialog
+                        v-model="dialog"
+                        max-width="290"
+                      >
+                        <v-card>
+                          <v-card-title class="headline">Use Google's location service?</v-card-title>
+
+                          <v-card-text>
+                            {{ animal.historia }}
+                          </v-card-text>
+
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              color="green darken-1"
+                              flat="flat"
+                              @click="dialog = false"
+                            >
+                              Cerrar
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
+                    </v-list-tile-content>
+                  </v-list-tile>
+
                   <router-link :to="{ name: 'historial', params: { id: animal.id_animal } }">
                   <v-list-tile @click=''>
                     <v-list-tile-content>Historial Medico:</v-list-tile-content>
