@@ -20,9 +20,6 @@
       <v-flex v-if="$router.history.current['path'].includes('/historial/') ">
         <FormAgregarHM/>
       </v-flex>
-      <v-flex v-if="$router.history.current['path'].includes('/images/') ">
-        <AgregarPhoto/>
-      </v-flex>
     </v-footer>
   </v-app>
 </template>

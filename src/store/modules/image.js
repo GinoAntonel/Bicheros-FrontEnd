@@ -41,6 +41,18 @@ const actions = {
     })
     .catch(err => console.log(err.response.data))
   },
+  deletePhoto({ commit }, {id_photo, token}) {
+    return new Promise((resolve, reject) => {
+      axios
+      .delete(`/api/photo/${id_photo}/`, {headers: { 'Authorization' : 'Token ' + token }})
+      .then(res => {
+        resolve(res)
+      })
+      .catch(err => {
+        reject(err)
+      })
+    })
+  },
 } 
 
 export default {
