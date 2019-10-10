@@ -164,7 +164,6 @@ export default {
     return {
       bottomNav: [],
       dialog: false,
-      dialog1: false
     }
   },
   components: {

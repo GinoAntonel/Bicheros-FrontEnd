@@ -12,7 +12,7 @@
           <v-card-text>
             <v-container grid-list-md>
               <v-layout wrap>
-                <v-flex v-for="image in photo" :key="image.id_photo" xs3 @change="fullscreenChange" :fullscreen.sync="fullscreen" ref="fullscreen">
+                <v-flex v-for="image in photo" :key="image.id_photo" xs3>
                   <div v-for="animal in animals" :key="animal.id_animal">
                     <div v-if="animal.id_animal == image.animal">
                     <v-hover>
@@ -99,14 +99,3 @@
     }
   }
 </script>
-
-<style>
-.v-card--reveal {
-  align-items: center;
-  bottom: 0;
-  justify-content: center;
-  opacity: .8;
-  position: absolute;
-  width: 100%;
-}
-</style>
