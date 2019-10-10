@@ -168,7 +168,7 @@ export default {
   },
   components: {
     FormModificar,
-    Imagenes
+    Imagenes,
   },
   computed: mapState({
     animals: state => state.animal.animals,

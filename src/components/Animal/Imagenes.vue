@@ -13,37 +13,42 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex v-for="image in photo" :key="image.id_photo" xs3>
-                  <div v-for="animal in animals" :key="animal.id_animal">
-                    <div v-if="animal.id_animal == image.animal">
-                    <v-hover>
-                      <v-img
-                      id="image"
-                      slot-scope="{ hover }"
-                        :src="`${image.photo}`"
-                        aspect-ratio="1"
-                        class="grey lighten-2"
-                      >
-                      <v-expand-transition>
-                        <div
-                          v-if="hover"
-                          class="d-flex transition-fast-in-fast-out transparent darken-2 v-card--reveal display-3 white--text"
-                          style="height: 100%;"
-                        >
-                          <div class="text-xs-center">
-                            <v-btn fab dark small color="red" @click="deletePhoto(image.id_photo)">
-                              <v-icon dark>delete</v-icon>
-                            </v-btn>
-
-                            <v-btn fab dark small color="primary" >
-                              <v-icon dark>aspect_ratio</v-icon>
-                            </v-btn>
-                          </div>
+                      <fullscreen :ref="`${image.id_photo}`" @change="fullscreenChange">
+                        <div v-if="fullscreen == true">
+                          <v-img
+                            class="fulls"
+                            :src=image.photo
+                          />
                         </div>
-                      </v-expand-transition>
-                    </v-img>
-                    </v-hover>
-                    </div>
-                  </div>
+                        <div v-else>
+                          <v-hover>
+                            <v-img
+                            id="image"
+                            slot-scope="{ hover }"
+                              :src=image.photo
+                              aspect-ratio="1"
+                              class="grey lighten-2"
+                            >
+                            <v-expand-transition>
+                              <div
+                                v-if="hover"
+                                class="d-flex transition-fast-in-fast-out transparent darken-2 v-card--reveal display-3 white--text"
+                                style="height: 100%;"
+                              >
+                                <div class="text-xs-center">
+                                  <v-btn fab dark small color="red" @click="deletePhoto(image.id_photo)">
+                                    <v-icon dark>delete</v-icon>
+                                  </v-btn>
+                                  <v-btn fab dark small color="primary" @click="toggle(image.id_photo)">
+                                    <v-icon dark>aspect_ratio</v-icon>
+                                  </v-btn>
+                                </div>
+                              </div>
+                            </v-expand-transition>
+                          </v-img>
+                          </v-hover>
+                        </div>
+                      </fullscreen>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -62,6 +67,10 @@
 
 <script>
   import { mapState } from 'vuex'
+  import fullscreen from 'vue-fullscreen'
+  import Vue from 'vue'
+
+  Vue.use(fullscreen)
 
   export default {
     
@@ -72,7 +81,9 @@
     },
     data () {
       return {
+        fullscreen: false,
         dialog: false,
+
       }
     },
     computed: mapState({
@@ -96,6 +107,18 @@
             this.$router.go()
           }) 
       },
+      toggle (id_photo) {
+        this.$refs[id_photo][0].toggle()
+      },
+      fullscreenChange (fullscreen) {
+          this.fullscreen = fullscreen
+      }
     }
   }
 </script>
+
+<style scoped>
+.fulls{
+  width: 100%;
+}
+</style>
