@@ -57,7 +57,6 @@
                     label="Fecha de Nacimiento"
                     readonly
                     v-on="on"
-                    outline
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -126,17 +125,6 @@
                     required
                     v-model='animal.veterinaria'
                   ></v-select>
-                </v-flex>
-                <v-flex xs12 sm6 class="text-xs-center text-sm-center text-md-center text-lg-center">
-                  <v-text-field label="Select Image" @click='pickFile' v-model='imageName' prepend-icon='attach_file'></v-text-field>
-                  <input
-                    type="file"
-                    style="display: none"
-                    ref="image"
-                    accept="image/*"
-                    @change="onFilePicked"
-                  >
-                  <img :src="animal.imageUrl" height="150" v-if="animal.imageUrl"/>
                 </v-flex>
                 <v-flex xs12 sm6> 
                   <v-text-field v-model="animal.historia" label="Historia"></v-text-field>

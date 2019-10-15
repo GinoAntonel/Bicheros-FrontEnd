@@ -56,6 +56,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
+            <AgregarPhoto/>
             <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
             <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
           </v-card-actions>
@@ -69,6 +70,7 @@
   import { mapState } from 'vuex'
   import fullscreen from 'vue-fullscreen'
   import Vue from 'vue'
+  import AgregarPhoto from './AgregarPhoto'
 
   Vue.use(fullscreen)
 
@@ -85,6 +87,9 @@
         dialog: false,
 
       }
+    },
+    components: {
+      AgregarPhoto
     },
     computed: mapState({
       token: state => state.user.token,
