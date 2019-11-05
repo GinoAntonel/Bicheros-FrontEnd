@@ -76,7 +76,7 @@
                 :items="['Ingreso', 'Gasto']"
                 label="Tipo"
                 required
-                v-model="montos.tipo"
+                v-model="montos.type"
               ></v-select>
             </v-flex>
             

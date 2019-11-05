@@ -52,6 +52,16 @@
         </template>
         <span>Donaciones</span>
       </v-tooltip>
+      <v-tooltip right>
+        <template v-slot:activator="{ on }">
+          <v-list-tile @click="logout()">
+            <v-list-tile-action>
+              <v-icon v-on="on">delete</v-icon>
+            </v-list-tile-action>
+          </v-list-tile>
+        </template>
+        <span>Cerrar Sesion</span>
+      </v-tooltip>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar :clipped-left="primaryDrawer.clipped" app absolute>
@@ -95,6 +105,13 @@ import Search from './Search'
     }),
     components: {
       Search,
+    },
+    methods: {
+      logout(){
+        this.$store.dispatch('user/logout').then(() => {
+          this.$router.push({ path: '/login'})
+        })
+      }
     }
   }
 </script>

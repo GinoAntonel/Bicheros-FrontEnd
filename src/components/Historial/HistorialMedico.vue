@@ -23,8 +23,8 @@
 
               <v-list dense>
                 <v-list-tile>
-                  <v-list-tile-content>Enfermedad:</v-list-tile-content>
-                  <v-list-tile-content class="align-end">{{ historial.enfermedad }}</v-list-tile-content>
+                  <v-list-tile-content>illness:</v-list-tile-content>
+                  <v-list-tile-content class="align-end">{{ historial.illness }}</v-list-tile-content>
                 </v-list-tile>
 
                 <v-list-tile>
@@ -34,17 +34,17 @@
 
                 <v-list-tile>
                   <v-list-tile-content>Estado:</v-list-tile-content>
-                  <div v-if='historial.estado == 0'>
+                  <div v-if='historial.state == 0'>
                     <v-list-tile-content class="align-end">Curado</v-list-tile-content>
                   </div>
-                  <div v-if='historial.estado == 1'>
+                  <div v-if='historial.state == 1'>
                     <v-list-tile-content class="align-end">No Curado</v-list-tile-content>
                   </div>
                 </v-list-tile>
 
                 <v-list-tile>
-                  <v-list-tile-content>Fecha:</v-list-tile-content>
-                  <v-list-tile-content class="align-end">{{ historial.fecha }}</v-list-tile-content>
+                  <v-list-tile-content>date:</v-list-tile-content>
+                  <v-list-tile-content class="align-end">{{ historial.date }}</v-list-tile-content>
                 </v-list-tile>
 
                 <v-list-tile>

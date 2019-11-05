@@ -30,7 +30,7 @@
                     </v-list-tile>
                     <v-list-tile>
                       <v-list-tile-content class="align-center">Telefono:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ cap.telefono }}</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ cap.phone }}</v-list-tile-content>
                     </v-list-tile>
                   </v-list>
                 </v-card>

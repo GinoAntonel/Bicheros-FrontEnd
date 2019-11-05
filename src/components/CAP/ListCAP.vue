@@ -3,6 +3,64 @@
     <Toolbar/>
     <v-content>
       <v-container grid-list-md text-xs-center>
+        <v-layout row>
+          <v-flex xs12 sm6 offset-sm3>
+            <v-card>
+              <v-toolbar color="cyan" dark>
+                <v-toolbar-side-icon></v-toolbar-side-icon>
+                <v-toolbar-title>Inbox</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn icon>
+                  <v-icon>search</v-icon>
+                </v-btn>
+              </v-toolbar>
+
+              <v-list two-line>
+                <template v-for="cap in clientes">
+                  <v-divider></v-divider>
+                  <v-list-tile
+                    :key="cap.nameC"
+                    avatar
+                    @click=""
+                  >
+                    <v-list-tile-avatar>
+                      <img src='https://cdn.vuetifyjs.com/images/lists/1.jpg'></img>
+                    </v-list-tile-avatar>
+
+                    <v-list-tile-content>
+                      <v-list-tile-title v-html="cap.nameC + ' ' + cap.last_nameC">{{ cap.last_nameC }}</v-list-tile-title>
+                      <v-list-tile-sub-title><span class='text--primary'>{{ cap.email }}</span> &mdash; {{ cap.date_of_birth }}</v-list-tile-sub-title>
+                      <v-list-tile-sub-title><span class='text--primary'>{{ cap.phone }}</span> &mdash; {{ cap.address }} </v-list-tile-sub-title>
+                    </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-menu bottom left>
+                      <template v-slot:activator="{ on }">
+                        <v-btn
+                          dark
+                          icon
+                          v-on="on"
+                        >
+                          <v-icon>more_vert</v-icon>
+                        </v-btn>
+                      </template>
+
+                      <v-list>
+                        <v-list-tile
+                          v-for="(item, i) in items"
+                          :key="i"
+                          @click=""
+                        >
+                          <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                        </v-list-tile>
+                      </v-list>
+                    </v-menu>
+                  </v-list-tile-action>
+                  </v-list-tile>
+                </template>
+              </v-list>
+            </v-card>
+          </v-flex>
+        </v-layout>
         <v-layout row wrap>
           <v-flex xs10>
             <v-expansion-panel>
@@ -30,7 +88,7 @@
                     </v-list-tile>
                     <v-list-tile>
                       <v-list-tile-content class="align-center">Telefono:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ cap.telefono }}</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ cap.phone }}</v-list-tile-content>
                     </v-list-tile>
                   </v-list>
                 </v-card>
@@ -56,6 +114,14 @@ import EditCAP from './EditCAP'
 Vue.component('EditCAP', EditCAP)
 
 export default {
+  data() {
+    return {
+      items: [
+        { title: 'Eliminar' },
+        { title: 'Editar' },
+      ]
+    }
+  },
   components: {
     Toolbar,
     Footer,

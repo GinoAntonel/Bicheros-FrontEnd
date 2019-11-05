@@ -14,7 +14,7 @@ import SearchVeterinaria from './components/Veterinaria/SearchVeterinaria'
 import SearchCAP from './components/CAP/SearchCAP'
 import HistorialMedico from './components/Historial/HistorialMedico'
 import Donations from './components/Donation/Donations'
-
+import store from './store/index'
 
 Vue.use(VueRouter)
 
@@ -135,7 +135,27 @@ const routes = [
   },
 ]
 
-export default new VueRouter({
+let router = new VueRouter({
   routes,
   mode: 'history'
 })
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  switch (to.name) {
+    case 'home':
+    case 'monto':
+    case 'DonationList':
+    case 'veterinaria':
+    case 'searchVet':
+    case 'searchCap':
+    case 'historial':
+    case 'Donation':
+    case 'listCAP':
+      store.state.user.token === null ? next({ name: 'login' }) : null
+      break
+  }
+  next()
+})
+
+export default router

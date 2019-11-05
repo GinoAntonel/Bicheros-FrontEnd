@@ -142,7 +142,7 @@
             <v-flex xs12 sm6 md6>
               <v-text-field
               outline
-              v-model="animales.gender"
+              v-model="animales.sex"
               ></v-text-field>
             </v-flex>
 
@@ -153,7 +153,7 @@
             <v-flex xs12 sm6 md6>
               <v-text-field
               outline
-              v-model="animales.temperamento"
+              v-model="animales.temperament"
               ></v-text-field>
             </v-flex>
 
@@ -194,7 +194,7 @@
                 item-value='id_veterinaria'
                 label="Veterinaria"
                 required
-                v-model="animales.veterinaria"
+                v-model="animales.veterinary"
               ></v-select>
             </v-flex>
 

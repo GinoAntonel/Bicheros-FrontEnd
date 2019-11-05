@@ -21,7 +21,7 @@
                   <v-list dense>
                     <v-list-tile>
                       <v-list-tile-content class="align-center">Tipo:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ monto.tipo }}</v-list-tile-content>
+                      <v-list-tile-content class="align-left">{{ monto.type }}</v-list-tile-content>
                     </v-list-tile>
                     <v-list-tile>
                       <v-list-tile-content class="align-center">Fecha:</v-list-tile-content>

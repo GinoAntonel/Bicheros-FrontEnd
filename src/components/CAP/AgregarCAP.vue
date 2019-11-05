@@ -29,7 +29,7 @@
                   <v-text-field v-model="client.address" label="Address" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field v-model="client.telefono" label="Telefono" required></v-text-field>
+                  <v-text-field v-model="client.phone" label="Telefono" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 >
                   <v-menu
@@ -88,7 +88,7 @@
         email: "",
         date: "",
         address: "",
-        telefono: ""
+        phone: ""
       }
     }),
     computed: mapState({

@@ -34,7 +34,7 @@
                   <v-text-field v-model="animal.place_founded" label="Lugar Encontrado" required></v-text-field>
                 </v-flex>
                 <v-flex xs6>
-                  <v-text-field v-model="animal.temperamento" label="Caracter" hint="Ej: Cariñoso, Agresivo, etc" required></v-text-field>
+                  <v-text-field v-model="animal.temperament" label="Caracter" hint="Ej: Cariñoso, Agresivo, etc" required></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field v-model="animal.video" label="Video" required></v-text-field>
@@ -103,7 +103,7 @@
                     :items="['Masculino', 'Femenino']"
                     label="Genero"
                     required
-                    v-model="animal.gender"
+                    v-model="animal.sex"
                   ></v-select>
                 </v-flex>
                 <v-flex xs12 sm6>
@@ -123,11 +123,11 @@
                     item-value='id_veterinaria'
                     label="Veterinaria"
                     required
-                    v-model='animal.veterinaria'
+                    v-model='animal.veterinary'
                   ></v-select>
                 </v-flex>
                 <v-flex xs12 sm6> 
-                  <v-text-field v-model="animal.historia" label="Historia"></v-text-field>
+                  <v-text-field v-model="animal.history" label="Historia"></v-text-field>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -160,15 +160,15 @@ import { mapState } from 'vuex'
         date_founded: '',
         place_founded: '',
         species: '',
-        gender: '',
+        sex: '',
         imageFile: '',
         imageUrl: '',
         cap: '',
-        veterinaria: '',
-        temperamento: '',
+        veterinary: '',
+        temperament: '',
         video: '',
         date_of_birth: '',
-        historia: ''
+        history: ''
       },
       imageName: '',
     }),

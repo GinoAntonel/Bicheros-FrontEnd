@@ -72,7 +72,7 @@
             <v-flex xs12 sm6 md6>
               <v-text-field
               outline
-              v-model="client.telefono"
+              v-model="client.phone"
               ></v-text-field>
             </v-flex>
 

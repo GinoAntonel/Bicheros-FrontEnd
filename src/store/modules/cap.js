@@ -68,7 +68,7 @@ const actions = {
         formData.append('email', client.email)
         formData.append('date_of_birth', client.date)
         formData.append('address', client.address)
-        formData.append('telefono', client.telefono)
+        formData.append('phone', client.phone)
         axios({
           method: 'post',
           url: '/api/cap/',
@@ -91,7 +91,7 @@ const actions = {
         formData.append('email', client.email)
         formData.append('date_of_birth', client.date_of_birth)
         formData.append('address', client.address)
-        formData.append('telefono', client.telefono)
+        formData.append('phone', client.phone)
         axios({
           method: 'put',
           url: `/api/cap/${client.id_cap}/`,

@@ -17,7 +17,7 @@
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12 sm6 md4>
-                  <v-text-field v-model="historial.enfermedad" label="Enfermedad" required></v-text-field>
+                  <v-text-field v-model="historial.illness" label="Enfermedad" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6 md4>
                   <v-text-field v-model="historial.description" label="Descripcion"></v-text-field>
@@ -36,7 +36,7 @@
                   >
                     <template v-slot:activator="{ on }">
                       <v-text-field
-                        v-model="historial.fecha"
+                        v-model="historial.date"
                         label="Fecha de Encuentro"
                         readonly
                         v-on="on"
@@ -44,7 +44,7 @@
                     </template>
                     <v-date-picker
                       ref="picker"
-                      v-model="historial.fecha"
+                      v-model="historial.date"
                       :max="new Date().toISOString().substr(0, 10)"
                       min="1950-01-01"
                       @change="save"
@@ -56,7 +56,7 @@
                     :items="['Curado', 'No Curado']"
                     label="Estado"
                     required
-                    v-model="historial.estado"
+                    v-model="historial.state"
                   ></v-select>
                 </v-flex>
                 <v-flex xs12 sm6>
@@ -93,10 +93,10 @@ import { mapState } from 'vuex'
       menu: false,
       date: null,
       historial: {
-        enfermedad: "",
-        fecha: "",
+        illness: "",
+        date: "",
         description: "",
-        estado: "",
+        state: "",
         animal: ""
       }
 

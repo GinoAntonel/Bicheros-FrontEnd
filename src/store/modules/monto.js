@@ -41,7 +41,7 @@ const actions = {
         .then(response => {
           var balance = response.data
           for(var x = 0; x < balance.length; x++){
-            if (balance[x]['tipo'] == 'Ingreso'){
+            if (balance[x]['type'] == 'Ingreso'){
               saldo += balance[x]['amount'];
             }
             else {
@@ -71,11 +71,11 @@ const actions = {
     let formData = new FormData()
     formData.append('amount', monto.amount)
     formData.append('date', monto.date)
-      if (monto.tipo === 'Ingreso'){
-        formData.append('tipo', 0)
+      if (monto.type === 'Ingreso'){
+        formData.append('type', 0)
       }
       else {
-        formData.append('tipo', 1)
+        formData.append('type', 1)
       }
     axios({
       method: 'post',
@@ -92,11 +92,11 @@ const actions = {
         formData.append('id', montos.id)
         formData.append('amount', montos.amount)
         formData.append('date', montos.date)
-        if (montos.tipo === 'Ingreso'){
-          formData.append('tipo', 0)
+        if (montos.type === 'Ingreso'){
+          formData.append('type', 0)
         }
         else{
-          formData.append('tipo', 1)
+          formData.append('type', 1)
         }
         axios({
           method: 'put',

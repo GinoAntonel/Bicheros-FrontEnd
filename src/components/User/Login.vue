@@ -20,6 +20,7 @@
                   </v-form>
                 </v-card-text>
               </v-card>
+              <div class="textR">No tienes una cuenta?<a href="/register"> Registrate </a></div>
             </v-flex>
           </v-layout>
         </v-container>
@@ -46,4 +47,11 @@
       }
     }
   }
-</script> 
+</script>
+
+<style>
+  .textR{
+    color: grey;
+    text-align: center;
+  }
+</style>

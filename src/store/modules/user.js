@@ -59,6 +59,21 @@ const actions = {
       })
       .catch(err => console.log(err.response.data))
     })
+  },
+  logout({ commit, rootState }){
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'post',
+        url: '/auth/logout/',
+      })
+      .then(res => {
+        console.log(rootState.user.token)
+        localStorage.removeItem('access_token')
+        localStorage.removeItem('user')
+        resolve(res)
+      })
+      .catch(err => console.log(err.response))
+    })
   }
 } 
 

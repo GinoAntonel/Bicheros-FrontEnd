@@ -13,6 +13,7 @@
     "vue": "^2.6.6",
     "vue-fullscreen": "^2.1.5",
     "vue-router": "^3.0.6",
+    "vue-youtube-embed": "^2.2.2",
     "vuetify": "^1.5.5",
     "vuex": "^3.1.1"
   },

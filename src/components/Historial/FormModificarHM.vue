@@ -28,7 +28,7 @@
             <v-flex xs12 sm6 md6>
               <v-text-field
               outline
-              v-model="historial.enfermedad"
+              v-model="historial.illness"
               ></v-text-field>
             </v-flex>
 
@@ -61,7 +61,7 @@
               >
                 <template v-slot:activator="{ on }">
                   <v-text-field
-                    v-model="historial.fecha"
+                    v-model="historial.date"
                     label="Fecha"
                     readonly
                     v-on="on"
@@ -70,7 +70,7 @@
                 </template>
                 <v-date-picker
                   ref="picker"
-                  v-model="historial.fecha"
+                  v-model="historial.date"
                   :max="new Date().toISOString().substr(0, 10)"
                   min="1950-01-01"
                   @change="save"
@@ -87,7 +87,7 @@
                 :items="['Curado', 'No curado']"
                 label="Estado"
                 required
-                v-model="historial.estado"
+                v-model="historial.state"
               ></v-select>
             </v-flex>
             

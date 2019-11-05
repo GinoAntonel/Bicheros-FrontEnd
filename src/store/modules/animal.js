@@ -59,19 +59,18 @@ const actions = {
     formData.append('date_founded', animal.date_founded)
     formData.append('place_founded', animal.place_founded)
     formData.append('species', animal.species)
-      if (animal.gender === 'Masculino'){
-        formData.append('gender', 0)
+      if (animal.sex === 'Masculino'){
+        formData.append('sex', 0)
       }
       else {
-        formData.append('gender', 1)
+        formData.append('sex', 1)
       }
-    formData.append('photo', animal.imageFile)
     formData.append('cap', animal.cap)
-    formData.append('veterinaria', animal.veterinaria)
-    formData.append('temperamento', animal.temperamento)
+    formData.append('veterinary', animal.veterinary)
+    formData.append('temperament', animal.temperament)
     formData.append('video', animal.video)
     formData.append('date_of_birth', animal.date_of_birth)
-    formData.append('historia', animal.historia)
+    formData.append('history', animal.history)
     axios({
       method: 'post',
       url: '/api/animals/',
@@ -94,11 +93,11 @@ const actions = {
           formData.append('photo', animales.imageFile)
         }
         formData.append('cap', animales.cap)
-        formData.append('veterinaria', animales.veterinaria)
-        formData.append('temperamento', animales.temperamento)
+        formData.append('veterinary', animales.veterinary)
+        formData.append('temperament', animales.temperament)
         formData.append('video', animales.video)
         formData.append('date_of_birth', animales.date_of_birth)
-        formData.append('historia', animales.historia)
+        formData.append('history', animales.history)
         axios({
           method: 'put',
           url: `/api/animals/${animales.id_animal}/`,

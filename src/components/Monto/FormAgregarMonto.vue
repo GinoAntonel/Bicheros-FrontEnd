@@ -24,7 +24,7 @@
                     :items="['Ingreso', 'Gasto']"
                     label="Tipo"
                     required
-                    v-model="monto.tipo"
+                    v-model="monto.type"
                   ></v-select>
                 </v-flex>
                 <v-flex xs12>
@@ -80,7 +80,7 @@
       menu: false,
       monto: {
         amount: '',
-        tipo: '',
+        type: '',
         date: ''
       }
     }),

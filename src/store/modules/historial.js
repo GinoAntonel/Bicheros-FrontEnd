@@ -48,14 +48,14 @@ const actions = {
     return new Promise((resolve,
       reject) => {
         let formData = new FormData()
-        formData.append('enfermedad', historial.enfermedad)
-        formData.append('fecha', historial.fecha)
+        formData.append('illness', historial.illness)
+        formData.append('date', historial.date)
         formData.append('description', historial.description)
-          if (historial.estado === 'Curado'){
-            formData.append('estado', 0)
+          if (historial.state === 'Curado'){
+            formData.append('state', 0)
           }
           else {
-            formData.append('estado', 1)
+            formData.append('state', 1)
           }
         formData.append('animal', historial.animal)
         axios({
@@ -72,13 +72,13 @@ const actions = {
       reject) => {
         let formData = new FormData()
         formData.append('id_HM', historial.id_HM)
-        formData.append('enfermedad', historial.enfermedad)
-        formData.append('fecha', historial.fecha)
+        formData.append('illness', historial.illness)
+        formData.append('date', historial.date)
         formData.append('description', historial.description)
-        if(historial.estado === 'Curado') {
-          formData.append('estado', 0)
+        if(historial.state === 'Curado') {
+          formData.append('state', 0)
         }else{
-          formData.append('estado', 1)
+          formData.append('state', 1)
         }
         axios({
           method: 'put',

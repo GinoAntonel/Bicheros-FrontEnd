@@ -41,7 +41,7 @@
                   </v-list-tile>
                   <v-list-tile>
                     <v-list-tile-content>Genero:</v-list-tile-content>
-                    <v-list-tile-content class="align-end">{{ animal.gender }}</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.sex }}</v-list-tile-content>
                   </v-list-tile>
                   <v-list-tile>
                     <v-list-tile-content>Fecha de Nacimiento:</v-list-tile-content>
@@ -49,7 +49,7 @@
                   </v-list-tile>
                   <v-list-tile>
                     <v-list-tile-content>Caracter:</v-list-tile-content>
-                    <v-list-tile-content class="align-end">{{ animal.temperamento }}</v-list-tile-content>
+                    <v-list-tile-content class="align-end">{{ animal.temperament }}</v-list-tile-content>
                   </v-list-tile>
 
                     <v-list-tile>
@@ -68,7 +68,7 @@
                     </div>
                   </div>
                   <div v-for="veterinaria in veterinarias">
-                    <div v-if="animal.veterinaria == veterinaria.id_veterinaria">
+                    <div v-if="animal.veterinary == veterinaria.id_veterinaria">
                       <v-list-tile>
                         <v-list-tile-content>Veterinaria:</v-list-tile-content>
                         <v-list-tile-content class="align-end">{{ veterinaria.name }}</v-list-tile-content>
@@ -97,7 +97,7 @@
                           <v-card-title class="headline">Historia del Animal</v-card-title>
 
                           <v-card-text>
-                            {{ animal.historia }}
+                            {{ animal.history }}
                           </v-card-text>
 
                           <v-card-actions>
@@ -155,7 +155,9 @@ import { mapState } from 'vuex'
 import Vue from 'vue'
 import FormModificar from './FormModificar'
 import Imagenes from './Imagenes'
+import VueYouTubeEmbed from 'vue-youtube-embed'
 
+Vue.use(VueYouTubeEmbed)
 Vue.component('FormModificar', FormModificar)
 Vue.component('Imagenes', Imagenes)
 
