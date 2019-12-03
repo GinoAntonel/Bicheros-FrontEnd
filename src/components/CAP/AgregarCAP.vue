@@ -10,23 +10,23 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Add Client</span>
+          <span class="headline">Agregar Cliente</span>
         </v-card-title>
         <v-card-text>
           <v-form @submit.prevent="addClient()" method="POST">
             <v-container grid-list-md>
               <v-layout wrap>
                 <v-flex xs12 sm6>
-                  <v-text-field v-model="client.name" label="Name" required></v-text-field>
+                  <v-text-field v-model="client.name" label="Nombre" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field v-model="client.last_name" label="Last Name" required></v-text-field>
+                  <v-text-field v-model="client.last_name" label="Apellido" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 >
                   <v-text-field v-model="client.email" label="Email" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
-                  <v-text-field v-model="client.address" label="Address" required></v-text-field>
+                  <v-text-field v-model="client.address" label="Direccion" required></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm6>
                   <v-text-field v-model="client.phone" label="Telefono" required></v-text-field>
@@ -63,12 +63,12 @@
               </v-layout>
             </v-container>
           </v-form>
-          <small>*Complete obligatory</small>
+          <small>*Completar los requeridos</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="addClient()">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="blue darken-1" text @click="addClient()">Guardar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

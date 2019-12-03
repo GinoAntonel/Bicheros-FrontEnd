@@ -2,38 +2,63 @@
   <v-app id="base" dark>
     <Toolbar/>
     <v-content>
-      <v-container grid-list-md text-xs-center>
+      <v-container fluid grid-list-md text-xs-center>
         <v-layout row wrap>
-          <v-flex xs10>
-            <v-expansion-panel>
-              <v-expansion-panel-content v-for="veterinaria in veterinarias" :key="veterinaria.id_veterinaria">
-                <template v-slot:header>
-                  <div> {{ veterinaria.name }}
+          <v-flex
+            xs12
+            sm6
+            md4
+            lg3
+            v-for="veterinaria in veterinarias" :key="veterinaria.id_veterinaria"
+          >
+            <v-toolbar dark>
+              <v-toolbar-title>{{ veterinaria.name }}</v-toolbar-title>
+              <v-spacer></v-spacer>
+
+                <v-menu bottom left>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      dark
+                      icon
+                      v-on="on"
+                    >
+                      <v-icon>more_vert</v-icon>
+                    </v-btn>
+                  </template>
+
+                  <v-list>
+                    <v-list-tile
+                      @click="deleteVeterinaria(veterinaria.id_veterinaria)"
+                    >
+                      <v-list-tile-title>Eliminar</v-list-tile-title>
+                    </v-list-tile>
+                    <v-list-tile
+                      @click=""
+                    >
                       <ModificarVeterinaria :veterinaria="veterinaria"/>
-                    <v-icon small class="mr-2" @click="deleteVeterinaria(veterinaria.id_veterinaria)"> delete </v-icon>
-                  </div>
-                </template>
-                <v-card>
-                  <v-divider></v-divider>
-                  <v-list dense>
-                    <v-list-tile>
-                      <v-list-tile-content class="align-center">Mail:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ veterinaria.email }}</v-list-tile-content>
-                    </v-list-tile>
-                    <v-list-tile>
-                      <v-list-tile-content class="align-center">Direccion:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ veterinaria.address }}</v-list-tile-content>
-                    </v-list-tile>
-                    <v-list-tile>
-                      <v-list-tile-content class="align-center">Telefono:</v-list-tile-content>
-                      <v-list-tile-content class="align-left">{{ veterinaria.phone }}</v-list-tile-content>
                     </v-list-tile>
                   </v-list>
-                </v-card>
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-flex>
+                </v-menu>
 
+            </v-toolbar>
+
+            <v-card>
+              <v-list dense>
+                <v-list-tile>
+                  <v-list-tile-content>Ubicacion:</v-list-tile-content>
+                  <v-list-tile-content class="align-end">{{ veterinaria.address }}</v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-content>Telefono:</v-list-tile-content>
+                  <v-list-tile-content class="align-end">{{ veterinaria.phone }}</v-list-tile-content>
+                </v-list-tile>
+                <v-list-tile>
+                  <v-list-tile-content>Email:</v-list-tile-content>
+                  <v-list-tile-content class="align-end">{{ veterinaria.email }}</v-list-tile-content>
+                </v-list-tile>
+              </v-list>
+            </v-card>
+          </v-flex>
         </v-layout>
       </v-container>
     </v-content>

@@ -98,7 +98,7 @@ import { mapState } from 'vuex'
         let donation = this.donation
         let token = this.token
         this.$store.dispatch('donation/createDonation', {donation, token}).then(() => {
-          this.$router.go()
+        this.$router.go()
         })
       },
       save (date) {

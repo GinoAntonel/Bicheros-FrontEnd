@@ -1,64 +1,49 @@
 <template>
   <v-layout row justify-center>
-    <v-dialog v-model="dialog" persistent max-width="750px" transition="dialog-bottom-transition">
+    <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <v-icon class="mr-2" color="#BDBDBD" v-on="on" @click="">
           edit
         </v-icon>
       </template>
       <v-card>
-        <v-toolbar dark>
+        <v-toolbar dark  >
           <v-btn icon dark @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Editar Animal</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat  @click="modifyAnimals()">Save</v-btn>
+            <v-btn dark flat  @click="modifyAnimals()">Guardar</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div>
-        <v-container>
-          <v-layout row wrap>
-
-            <v-flex xs12 sm6 md6>
-              <label>Nombre:</label>
+        <v-container grid-list-md>
+          <v-layout wrap>
+            <v-flex xs12 sm6 md4>
+              <v-text-field v-model="animales.name" label="Nombre" required></v-text-field>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
+            <v-flex xs12 sm6 md4>
+              <v-text-field v-model="animales.race" label="Raza"></v-text-field>
+            </v-flex>
+            <v-flex xs12 sm6 md4>
               <v-text-field
-              outline
-              v-model="animales.name"
+                v-model="animales.species"
+                label="Especie"
+                hint="Ej: Perro, Gato, etc"
+                required
               ></v-text-field>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Raza:</label>
+            <v-flex xs6>
+              <v-text-field v-model="animales.place_founded" label="Lugar Encontrado" required></v-text-field>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="animales.race"
-              ></v-text-field>
+            <v-flex xs6>
+              <v-text-field v-model="animales.temperament" label="Caracter" hint="Ej: Cariñoso, Agresivo, etc" required></v-text-field>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Lugar Encontrado:</label>
+            <v-flex xs12>
+              <v-text-field v-model="animales.video" label="Video" required></v-text-field>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="animales.place_founded"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Fecha de Nacimiento:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
+            <v-flex xs12>
               <v-menu
                 ref="menu2"
                 v-model="menu2"
@@ -76,10 +61,10 @@
                     label="Fecha de Nacimiento"
                     readonly
                     v-on="on"
-                    outline
                   ></v-text-field>
                 </template>
                 <v-date-picker
+                  @input="menu2 = false"
                   ref="picker"
                   v-model="animales.date_of_birth"
                   :max="new Date().toISOString().substr(0, 10)"
@@ -88,12 +73,7 @@
                 ></v-date-picker>
               </v-menu>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Fecha Encontrado:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
+            <v-flex xs12>
               <v-menu
                 ref="menu"
                 v-model="menu"
@@ -111,7 +91,6 @@
                     label="Fecha de Encuentro"
                     readonly
                     v-on="on"
-                    outline
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -123,55 +102,14 @@
                 ></v-date-picker>
               </v-menu>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Especie:</label>
+            <v-flex xs12 sm6>
+              <v-select
+                v-model="animales.sex"
+                :items="['Masculino', 'Femenino']"
+                label="Genero"
+                required
+              ></v-select>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="animales.species"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Genero:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="animales.sex"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Caracter:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="animales.temperament"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Video:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="animales.video"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Cliente:</label>
-            </v-flex>
-
             <v-flex xs12 sm6>
               <v-select
                 :items="clientes"
@@ -179,14 +117,9 @@
                 item-value='id_cap'
                 label="Cliente"
                 required
-                v-model="animales.cap"
+                v-model='animales.cap'
               ></v-select>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Veterinaria:</label>
-            </v-flex>
-
             <v-flex xs12 sm6>
               <v-select
                 :items="veterinarias"
@@ -194,37 +127,12 @@
                 item-value='id_veterinaria'
                 label="Veterinaria"
                 required
-                v-model="animales.veterinary"
+                v-model='animales.veterinary'
               ></v-select>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Imagen:</label>
+            <v-flex xs12 sm6> 
+              <v-text-field v-model="animales.history" label="Historia"></v-text-field>
             </v-flex>
-
-            <v-flex xs12 sm6 class="text-xs-center text-sm-center text-md-center text-lg-center">
-              <v-text-field v-model="imageName" @click='pickFile' prepend-icon='attach_file' ></v-text-field>
-              <input
-                type="file"
-                style="display: none"
-                ref="image"
-                accept="image/*"
-                @change="onFilePicked"
-              >
-              <img :src="animales.imageUrl" height="150" v-if="animales.imageUrl"/>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Historia:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6>
-              <v-text-field
-              outline
-              v-model="animales.historia"
-              ></v-text-field>
-            </v-flex>
-
           </v-layout>
         </v-container>
         </div>
@@ -269,6 +177,9 @@ import { mapState } from 'vuex'
       clientes: state => state.cap.clientes,
       veterinarias: state => state.veterinaria.veterinarias
     }),
+    mounted() {
+      console.log(this.animales.sex)
+    },
     methods: {
       modifyAnimals() {
         let animales = this.animales

@@ -2,40 +2,25 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="750px" transition="dialog-bottom-transition">
       <template v-slot:activator="{ on }" >
-          <v-btn icon class="hola" v-on='on'>
-            <v-icon > edit </v-icon>
-          </v-btn>
+        <v-list-tile-title v-on="on">Editar</v-list-tile-title>
       </template>
       <v-card>
         <v-toolbar dark>
           <v-btn icon dark @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Editar Monto</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat  @click="modifyMonto()">Save</v-btn>
+            <v-btn dark flat  @click="modifyMonto()">Guardar</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div>
-        <v-container>
+        <v-container grid-list-md>
           <v-layout row wrap>
-
             <v-flex xs12 sm6 md6>
-              <label>Cantidad:</label>
+              <v-text-field v-model="montos.amount" label="Monto" required></v-text-field>
             </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="montos.amount"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Fecha:</label>
-            </v-flex>
-
             <v-flex xs12 sm6 md6>
               <v-menu
                 ref="menu"
@@ -54,7 +39,6 @@
                     label="Fecha"
                     readonly
                     v-on="on"
-                    outline
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -67,19 +51,14 @@
               </v-menu>
             </v-flex>
 
-            <v-flex xs12 sm6 md6>
-              <label>Tipo de donacion:</label>
-            </v-flex>
-
             <v-flex xs12 sm6>
               <v-select
-                :items="['Ingreso', 'Gasto']"
+                :items="['Deposit', 'Expense']"
                 label="Tipo"
                 required
                 v-model="montos.type"
               ></v-select>
             </v-flex>
-            
           </v-layout>
         </v-container>
         </div>

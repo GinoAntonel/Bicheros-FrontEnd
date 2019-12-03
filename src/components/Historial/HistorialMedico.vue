@@ -23,7 +23,7 @@
 
               <v-list dense>
                 <v-list-tile>
-                  <v-list-tile-content>illness:</v-list-tile-content>
+                  <v-list-tile-content>Enfermedad:</v-list-tile-content>
                   <v-list-tile-content class="align-end">{{ historial.illness }}</v-list-tile-content>
                 </v-list-tile>
 
@@ -43,7 +43,7 @@
                 </v-list-tile>
 
                 <v-list-tile>
-                  <v-list-tile-content>date:</v-list-tile-content>
+                  <v-list-tile-content>Fecha:</v-list-tile-content>
                   <v-list-tile-content class="align-end">{{ historial.date }}</v-list-tile-content>
                 </v-list-tile>
 

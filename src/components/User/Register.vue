@@ -11,10 +11,10 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
-                    <v-text-field v-model="user.username" prepend-icon="person" name="username" label="Username" type="text"/>
+                    <v-text-field v-model="user.username" prepend-icon="person" name="username" label="Nombre" type="text"/>
                     <v-text-field v-model="user.email" prepend-icon="person" name="email" label="Email" type="text"/>
-                    <v-text-field v-model="user.password" prepend-icon="lock" name="password" label="Password" type="password"/>
-                    <v-text-field v-model="user.password2" prepend-icon="lock" name="password2" label="Repeat Password" type="password"/>
+                    <v-text-field v-model="user.password" prepend-icon="lock" name="password" label="Contraseña" type="password"/>
+                    <v-text-field v-model="user.password2" prepend-icon="lock" name="password2" label="Repetir Contraseña" type="password"/>
                     <v-card-actions>
                       <v-spacer/>
                       <v-btn color="primary" @click="register()">Registrarme</v-btn>

@@ -10,7 +10,7 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">Add Amount</span>
+          <span class="headline">Agregar Monto</span>
         </v-card-title>
         <v-card-text>
           <v-form @submit.prevent="addAmount()" method="POST">
@@ -59,12 +59,12 @@
               </v-layout>
             </v-container>
           </v-form>
-          <small>*Complete obligatory</small>
+          <small>*Completar los requeridos</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="addAmount()">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">Cerrar</v-btn>
+          <v-btn color="blue darken-1" text @click="addAmount()">Guardar</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

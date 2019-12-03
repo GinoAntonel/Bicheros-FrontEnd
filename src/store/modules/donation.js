@@ -8,12 +8,16 @@ const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975H
 
 const state =  {
   donations: null,
+  stock: null,
 }
 
 const mutations = {
   setDonations(state, donations) {
     state.donations = donations
   },
+  setStock(state, stock) {
+    state.stock = stock
+  }
 }
 
 const actions = {
@@ -59,6 +63,7 @@ const actions = {
       reject) => {
         let formData = new FormData()
         formData.append('id_donation', donations.id_donation)
+        formData.append('description', donations.description)
         formData.append('date', donations.date)
         if (donations.type_of_donation === 'Comida de Gato'){
           formData.append('type_of_donation', 0)

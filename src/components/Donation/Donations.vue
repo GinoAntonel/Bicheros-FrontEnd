@@ -12,7 +12,7 @@
               <v-divider></v-divider>
               <v-card-actions class="justify-space-between">
                 <router-link :to="{ name: 'DonationList', params: { TOD: 0 } }">
-                  <v-btn class="primary">Ver</v-btn>
+                  <v-btn round outline class="primary">Ver Donaciones</v-btn>
                 </router-link>
               </v-card-actions>
             </v-card>
@@ -25,7 +25,7 @@
               <v-divider></v-divider>
               <v-card-actions class="justify-space-between">
                 <router-link :to="{ name: 'DonationList', params: { TOD: 1 } }">
-                  <v-btn class="primary" >Ver</v-btn>
+                  <v-btn round outline class="primary">Ver Donaciones</v-btn>
                 </router-link>
               </v-card-actions>
             </v-card>
@@ -38,7 +38,7 @@
               <v-divider></v-divider>
               <v-card-actions class="justify-space-between">
                 <router-link :to="{ name: 'DonationList', params: { TOD: 2 } }">
-                  <v-btn class="primary" >Ver</v-btn>
+                  <v-btn round outline class="primary">Ver Donaciones</v-btn>
                 </router-link>
               </v-card-actions>
             </v-card>
@@ -51,7 +51,7 @@
               <v-divider></v-divider>
               <v-card-actions class="justify-space-between">
                 <router-link :to="{ name: 'DonationList', params: { TOD: 3 } }">
-                  <v-btn class="primary" >Ver</v-btn>
+                  <v-btn round outline class="primary">Ver Donaciones</v-btn>
                 </router-link>
               </v-card-actions>
             </v-card>
@@ -64,7 +64,7 @@
               <v-divider></v-divider>
               <v-card-actions class="justify-space-between">
                 <router-link :to="{ name: 'DonationList', params: { TOD: 4 } }">
-                  <v-btn class="primary" >Ver</v-btn>
+                  <v-btn round outline class="primary">Ver Donaciones</v-btn>
                 </router-link>
               </v-card-actions>
             </v-card>
@@ -86,13 +86,13 @@ import Toolbar from "../Base/Toolbar"
   export default {
     data() {
       return {
-        
       }  
     },
     computed: mapState({
       token: state => state.user.token,
       donations: state => state.donation.donations,
-      donationCG: state => state.donation.donationCG
+      donationCG: state => state.donation.donationCG,
+      stock: state => state.donation.stock
     }),
     components: {
       Footer,
@@ -100,12 +100,21 @@ import Toolbar from "../Base/Toolbar"
     },
     mounted() {
       this.getDonations()
+
     },
     methods: {
       getDonations(){
         let token = this.token
         this.$store.dispatch("donation/obtainDonations", { token })
-      }
+  
+      },
+      obtainStock(){
+        let stock = this.stock
+        let token = this.token
+        this.$store.dispatch('donation/obtainStock', {stock, token}).then(() => {
+        console.log(this.stock)
+        })
+      },
     }
   }
 </script>

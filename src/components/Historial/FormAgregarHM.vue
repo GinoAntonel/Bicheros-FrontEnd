@@ -122,9 +122,8 @@ import { mapState } from 'vuex'
       addHistory(){
         let token = this.token
         let historial = this.historial
-        this.$store.dispatch('historial/createHistory', {historial, token}).then(() => {
-          this.$router.go()
-        })
+        this.$store.dispatch('historial/createHistory', {historial, token})
+        this.$router.go()
       },
       save (date) {
         this.$refs.menu.save(date)

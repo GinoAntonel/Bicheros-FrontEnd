@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000';
+axios.defaults.baseURL = 'http://172.19.0.1:8000';
 
 const client_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const client_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -77,7 +77,8 @@ const actions = {
         formData.append('description', historial.description)
         if(historial.state === 'Curado') {
           formData.append('state', 0)
-        }else{
+        }
+        if(historial.state === 'No curado'){
           formData.append('state', 1)
         }
         axios({

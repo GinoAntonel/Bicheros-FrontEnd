@@ -2,82 +2,61 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="750px" transition="dialog-bottom-transition">
       <template v-slot:activator="{ on }">
-        <v-icon small class="mr-2" v-on="on">
-          edit
-        </v-icon>
+        <v-list-tile-title v-on="on">Editar</v-list-tile-title>
       </template>
       <v-card>
         <v-toolbar dark>
           <v-btn icon dark @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Modificar Cliente</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat  @click="modifyClient()">Save</v-btn>
+            <v-btn dark flat  @click="modifyClient()">Guardar</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div>
-        <v-container>
+        <v-container grid-list-md>
           <v-layout row wrap>
 
             <v-flex xs12 sm6 md6>
-              <label>Nombre:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label="Nombre"
+              required
               v-model="client.nameC"
               ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Apellido:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label="Apellido"
+              required
               v-model="client.last_nameC"
               ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Email:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label="Email"
+              required
               v-model="client.email"
               ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Direccion:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label="Direccion"
+              required
               v-model="client.address"
               ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Telefono:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label="Telefono"
+              required
               v-model="client.phone"
               ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Fecha de nacimiento:</label>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
@@ -98,7 +77,6 @@
                     label="Fecha de Encuentro"
                     readonly
                     v-on="on"
-                    outline
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -150,7 +128,7 @@ import { mapState } from 'vuex'
         let client = this.client
         let token = this.token
         this.$store.dispatch('cap/modifyClient', {client, token}).then(() => {
-        this.$router.push({ path: '/clientes' })
+        //this.$router.push({ path: '/clientes' })
         this.$router.go()
         })
       },

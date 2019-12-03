@@ -2,8 +2,8 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="750px" transition="dialog-bottom-transition">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" v-on="on" text>
-          Modify
+        <v-btn  outline fab dark small v-on="on">
+          <v-icon >edit</v-icon>
         </v-btn>
       </template>
       <v-card>
@@ -14,17 +14,12 @@
           <v-toolbar-title>Settings</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat  @click="modifyDonation()">Save</v-btn>
+            <v-btn dark flat  @click="modifyDonation()">Guardar</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div>
         <v-container>
           <v-layout row wrap>
-
-            <v-flex xs12 sm6 md6>
-              <label>Tipo de donacion:</label>
-            </v-flex>
-
             <v-flex xs12 sm6>
               <v-select
                 :items="['Comida de Gato', 'Comida de Perro', 'Ropa', 'Otros']"
@@ -32,10 +27,6 @@
                 required
                 v-model="donations.type_of_donation"
               ></v-select>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Fecha Encontrado:</label>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
@@ -56,7 +47,6 @@
                     label="Fecha de Encuentro"
                     readonly
                     v-on="on"
-                    outline
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -70,12 +60,9 @@
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Descripcion:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              required
+              label='Descripcion'
               v-model="donations.description"
               ></v-text-field>
             </v-flex>

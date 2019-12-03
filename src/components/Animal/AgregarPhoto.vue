@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <div class="text-xs-center">
-          <v-btn v-on="on" color="blue darken-1" flat text-justify-left>
+          <v-btn class="btnAdd" v-on="on" color="blue darken-1" flat text-justify-left>
             <v-icon>
               add
             </v-icon>
@@ -46,7 +46,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
+          <v-btn color="blue darken-1" flat @click="dialog = false">Cerrar</v-btn>
           <v-btn color="blue darken-1" flat @click="addPhoto()">Guardar</v-btn>
         </v-card-actions>
       </v-card>
@@ -105,3 +105,8 @@ import { mapState } from 'vuex'
     }
   }
 </script>
+<style scoped>
+.btnAdd{
+  margin-left: 101%;
+}
+</style>

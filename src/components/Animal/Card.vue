@@ -2,13 +2,12 @@
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
       <v-flex v-for="(animal, index) in animals" xs4>
-        <v-card height="680px">
-          <v-flex v-if="bottomNav[index] == 'img'" >
-            <a :href="`${animal.video}`">Click para ver el video</a>
-          </v-flex>
-          <v-flex v-if="bottomNav[index] == 'delete'">
-            <v-container>
-              <v-btn @click="deleteAnimal(animal.id_animal)" color="error">Eliminar</v-btn>
+        <v-card height="680px" >
+          <v-flex v-if="bottomNav[index] == 'delete'" >
+            <v-container fluid grid-list-md>
+              <v-flex xs12>
+                <v-btn class="btnDelete" round @click="deleteAnimal(animal.id_animal)" color="error">Eliminar</v-btn>
+              </v-flex>
             </v-container>
           </v-flex>
           <v-flex v-else-if="bottomNav[index]  == 'info'" xs12>
@@ -129,10 +128,6 @@
           </v-container>
           </v-flex>
           <v-bottom-nav :active.sync="bottomNav[index]" :value="true"  absolute dark shift>
-            <v-btn dark id="btn" value="img">
-              <span>Imagen</span>
-              <v-icon>image</v-icon>
-            </v-btn>
 
             <v-btn dark value="info">
               <span>Informacion</span>
@@ -206,3 +201,8 @@ export default {
 }
 </script>
 
+<style>
+.btnDelete{
+  margin-top: 90%;
+}
+</style>

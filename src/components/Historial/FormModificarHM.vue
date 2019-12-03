@@ -11,40 +11,22 @@
           <v-btn icon dark @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Editar Historial Medico</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat  @click="modifyHistory()">Save</v-btn>
+            <v-btn dark flat  @click="modifyHistory()">Guardar</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div>
-        <v-container>
+        <v-container grid-list-md>
           <v-layout row wrap>
 
             <v-flex xs12 sm6 md6>
-              <label>Enfermedad:</label>
+              <v-text-field v-model="historial.illness" label="Nombre" required></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="historial.illness"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Descripcion:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <v-text-field
-              outline
-              v-model="historial.description"
-              ></v-text-field>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Fecha:</label>
+              <v-text-field v-model="historial.description" label="Descripcion" required></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
@@ -65,7 +47,6 @@
                     label="Fecha"
                     readonly
                     v-on="on"
-                    outline
                   ></v-text-field>
                 </template>
                 <v-date-picker
@@ -76,10 +57,6 @@
                   @change="save"
                 ></v-date-picker>
               </v-menu>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
-              <label>Tipo de donacion:</label>
             </v-flex>
 
             <v-flex xs12 sm6>

@@ -2,30 +2,46 @@
   <v-app id="base" dark>
     <Toolbar/>
     <v-content>
+
       <v-container grid-list-md text-xs-center>
         <v-layout row wrap>
-          <v-flex xs4 v-for="donation in donations" :key="donation.id_donations">
-            <v-card class="elevation-16 mx-auto" width="300">
-              <v-card-title class="headline" primary-title>
-                {{ donation.type_of_donation }}
-              </v-card-title>
-              <v-card-text>
-                {{ donation.date }}
-                <div class="text-center mt-12">
-                  {{ donation.description }}
-                </div>
-              </v-card-text>
+          <v-flex
+            xs12
+            sm6
+            md4
+            xs4 v-for="donation in donations" 
+            :key="donation.id_donations"
+          >
+            <v-card>
+
+            <v-card-title class="subheading font-weight-bold">
+                  {{donation.description}} x{{donation.quantity}}
+            </v-card-title>
+
               <v-divider></v-divider>
-              <v-card-actions class="justify-space-between">
-                <v-btn color="primary" text @click="deleteDonation(donation.id_donation)">
-                  Delete
-                </v-btn>
-                <ModificarDonation :donations='donation'/>
-              </v-card-actions>
+
+
+                <v-list-tile>
+                  <v-list-tile-content>Fecha:</v-list-tile-content>
+                  <v-list-tile-content class="align-end">{{ donation.date }}</v-list-tile-content>
+                </v-list-tile>
+                <v-divider></v-divider>
+                <v-list-tile>
+                  <v-list-tile-content class="align-center" >
+                    <v-btn fab outline dark small class="btnR">
+                      <v-icon dark>delete</v-icon>
+                    </v-btn>
+                  </v-list-tile-content>
+                  <v-list-tile-content class="align-end">
+                    <ModificarDonation :donations='donation'/>
+                  </v-list-tile-content>
+                </v-list-tile>
+
             </v-card>
           </v-flex>
         </v-layout>
       </v-container>
+
     </v-content>
     <router-view/>
     <Footer/>
@@ -65,7 +81,6 @@ Vue.component('ModificarDonation', ModificarDonation)
       getDonations(type_of_donation){
         let token = this.token
         let TOD = this.type_of_donation
-        console.log('ddd' + TOD)
         this.$store.dispatch("donation/obtainDonations2", { token, TOD })
       },
       getDonationsStock(){
@@ -82,3 +97,9 @@ Vue.component('ModificarDonation', ModificarDonation)
     }
   }
 </script>
+
+<style scoped>
+.btnR{
+margin-right: 65%;
+}
+</style>

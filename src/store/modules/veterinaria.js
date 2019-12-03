@@ -1,7 +1,7 @@
 import axios from 'axios'
 import qs from 'qs'
 
-axios.defaults.baseURL = 'http://127.0.0.1:8000';
+axios.defaults.baseURL = 'http://172.19.0.1:8000';
 
 const veterinaria_id = 'MB8ojE81E7nFQcpkcP9fDKNfDTH2GuKwhNzQpED9'
 const veterinaria_secret = 'xXfJNPqa6bk8ioLg0Uw3xRsfrE3QV2KqUrSl8lYmE9L1Pfz3nC48j975HnW1pBGi5FHZ4gF4KOGe3fOQYR9E8UmoYP1Oc728IVpggv6p5gGiR3mxRVClovTNM3uu6DBq'
@@ -82,9 +82,10 @@ const actions = {
   modifyVeterinaria({ commit }, {veterinaria, token}){
     return new Promise((resolve,
       reject) => {
+        console.log(veterinaria)
         let formData = new FormData()
-        formData.append('id_cap', veterinaria.id_veterinaria)
-        formData.append('nameC', veterinaria.name)
+        formData.append('id_veterinaria', veterinaria.id_veterinaria)
+        formData.append('name', veterinaria.name)
         formData.append('email', veterinaria.email)
         formData.append('address', veterinaria.address)
         formData.append('phone', veterinaria.phone)

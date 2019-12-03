@@ -2,65 +2,51 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="750px" transition="dialog-bottom-transition">
       <template v-slot:activator="{ on }">
-        <v-icon small class="mr-2" v-on="on">
-          edit
-        </v-icon>
+        <v-list-tile-title v-on="on">Editar</v-list-tile-title>
       </template>
       <v-card>
         <v-toolbar dark>
           <v-btn icon dark @click="dialog = false">
             <v-icon>close</v-icon>
           </v-btn>
-          <v-toolbar-title>Settings</v-toolbar-title>
+          <v-toolbar-title>Modificar Veterinaria</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
-            <v-btn dark flat  @click="modifyVeterinaria()">Save</v-btn>
+            <v-btn dark flat  @click="modifyVeterinaria()">Guardar</v-btn>
           </v-toolbar-items>
         </v-toolbar>
         <div>
-        <v-container>
+        <v-container grid-list-md>
           <v-layout row wrap>
 
             <v-flex xs12 sm6 md6>
-              <label>Nombre:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label='Nombre'
+              required
               v-model="veterinaria.name"
               ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Email:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label='Email'
+              required
               v-model="veterinaria.email"
               ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Direccion:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label='Direccion'
+              required
               v-model="veterinaria.address"
               ></v-text-field>
             </v-flex>
 
             <v-flex xs12 sm6 md6>
-              <label>Telefono:</label>
-            </v-flex>
-
-            <v-flex xs12 sm6 md6>
               <v-text-field
-              outline
+              label='Telefono'
+              required
               v-model="veterinaria.phone"
               ></v-text-field>
             </v-flex>
@@ -94,9 +80,10 @@ import { mapState } from 'vuex'
     methods: {
       modifyVeterinaria() {
         let veterinaria = this.veterinaria
+        console.log('dd +', this.veterinaria)
         let token = this.token
         this.$store.dispatch('veterinaria/modifyVeterinaria', {veterinaria, token}).then(() => {
-        this.$router.push({ path: '/veterinarias' })
+        //this.$router.push({ path: '/veterinarias' })
         this.$router.go()
         })
       },

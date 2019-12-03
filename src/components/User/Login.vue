@@ -11,8 +11,8 @@
                 </v-toolbar>
                 <v-card-text>
                   <v-form @submit.prevent="login">
-                    <v-text-field v-model="user.username" prepend-icon="person" name="username" label="Username" type="text"/>
-                    <v-text-field v-model="user.password" prepend-icon="lock" name="password" label="Password" type="password"/>
+                    <v-text-field v-model="user.username" prepend-icon="person" name="username" label="Nombre" type="text"/>
+                    <v-text-field v-model="user.password" prepend-icon="lock" name="password" label="Contraseña" type="password"/>
                     <v-card-actions>
                       <v-spacer/>
                       <v-btn color="primary" type="submit">Login</v-btn>

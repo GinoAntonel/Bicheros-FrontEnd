@@ -57,8 +57,8 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <AgregarPhoto/>
-            <v-btn color="blue darken-1" flat @click="dialog = false">Close</v-btn>
-            <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
+            <v-btn color="blue darken-1" flat @click="dialog = false">Cerrar</v-btn>
+            <v-btn color="blue darken-1" flat @click="dialog = false">Guardar</v-btn>
           </v-card-actions>
         </v-card>
       
